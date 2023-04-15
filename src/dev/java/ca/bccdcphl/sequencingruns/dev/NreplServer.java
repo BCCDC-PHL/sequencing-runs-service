@@ -1,4 +1,4 @@
-package ca.bccdcphl.sequencingruns;
+package ca.bccdcphl.sequencingruns.dev;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -31,7 +31,6 @@ public class NreplServer {
     public NreplServer () {
 
     }
-
 
     @PostConstruct
     public void start() {
