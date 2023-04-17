@@ -32,6 +32,11 @@
 			<artifactId>spring-boot-starter-hateoas</artifactId>
 		</dependency>
 		<dependency>
+			<groupId>com.toedter</groupId>
+			<artifactId>spring-hateoas-jsonapi</artifactId>
+			<version>1.6.0</version>
+		</dependency>
+		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 			<exclusions>
@@ -50,6 +55,16 @@
 			<artifactId>spring-boot-starter-validation</artifactId>
 		</dependency>
 		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springdoc</groupId>
+			<artifactId>springdoc-openapi-ui</artifactId>
+			<version>1.6.15</version>
+		</dependency>
+		<dependency>
 			<groupId>org.liquibase</groupId>
 			<artifactId>liquibase-core</artifactId>
 		</dependency>
@@ -57,11 +72,6 @@
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
 			<scope>runtime</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>javax.annotation</groupId>
@@ -96,6 +106,16 @@
 					<artifactId>nrepl</artifactId>
 					<version>1.0.0</version>
 				</dependency>
+				<dependency>
+					<groupId>cider</groupId>
+					<artifactId>cider-nrepl</artifactId>
+					<version>0.30.0</version>
+				</dependency>
+				<dependency>
+					<groupId>org.clojure</groupId>
+					<artifactId>java.data</artifactId>
+					<version>1.0.95</version>
+				</dependency>
 			</dependencies>
 			<build>
 				<plugins>
@@ -125,6 +145,18 @@
 					</resource>
 				</resources>
 			</build>
+			<repositories>
+				<repository>
+					<id>clojars</id>
+					<url>https://repo.clojars.org/</url>
+					<snapshots>
+						<enabled>true</enabled>
+					</snapshots>
+					<releases>
+						<enabled>true</enabled>
+					</releases>
+				</repository>
+			</repositories>
 		</profile>
 		<profile>
 			<id>test</id>
@@ -151,6 +183,23 @@
 	</profiles>
 	<build>
 		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<goals>
+							<goal>repackage</goal>
+						</goals>
+						<configuration>
+							<classifier>spring-boot</classifier>
+							<mainClass>
+								ca.bccdcphl.sequencingruns.entrypoints.SequencingrunsSpringBootApplication
+							</mainClass>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
 			<plugin>
 				<groupId>org.liquibase</groupId>
 				<artifactId>liquibase-maven-plugin</artifactId>
@@ -188,16 +237,6 @@
 			<url>https://repo.spring.io/snapshot</url>
 			<releases>
 				<enabled>false</enabled>
-			</releases>
-		</repository>
-		<repository>
-			<id>clojars</id>
-			<url>https://repo.clojars.org/</url>
-			<snapshots>
-				<enabled>true</enabled>
-			</snapshots>
-			<releases>
-				<enabled>true</enabled>
 			</releases>
 		</repository>
 	</repositories>
