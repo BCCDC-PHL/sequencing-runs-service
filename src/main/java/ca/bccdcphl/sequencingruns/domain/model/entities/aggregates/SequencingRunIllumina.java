@@ -23,6 +23,12 @@ public class SequencingRunIllumina extends AggregateRoot<SequencingRunIllumina, 
     private Float percentClustersPassedFilter;
     private Float errorRate;
     private Float firstCycleIntensity;
+    private Float percentAligned;
+    private Float q30Percent;
+    private Float projectedYieldGigabases;
+    private Float yieldGigabases;
+    private Long numReads;
+    private Long numReadsPassedFilter;
 
     protected SequencingRunIllumina(String entityId) {
         super(entityId);

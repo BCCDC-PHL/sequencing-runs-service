@@ -11,14 +11,10 @@ public class SequencingInstrumentNanopore extends AggregateRoot<SequencingInstru
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
-
-    @Column(name="instrument_id")
     private String instrumentId;
-
-    @Column(name="status")
+    private String type;
+    private String model;
     private String status;
-
-    @Column(name="timestamp_status_updated")
     private LocalDateTime timestampStatusUpdated;
 
     protected SequencingInstrumentNanopore(String instrumentId) {
