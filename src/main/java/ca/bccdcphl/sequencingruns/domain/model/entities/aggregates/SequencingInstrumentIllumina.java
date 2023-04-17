@@ -1,14 +1,13 @@
 package ca.bccdcphl.sequencingruns.domain.model.entities.aggregates;
 
 import ca.bccdcphl.sequencingruns.domain.model.AggregateRoot;
-import ca.bccdcphl.sequencingruns.domain.model.values.SequencingInstrumentId;
-import org.springframework.context.ApplicationContext;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name="sequencing_instrument_illumina")
-public class SequencingInstrumentIllumina extends AggregateRoot<SequencingInstrumentIllumina, SequencingInstrumentId> {
+public class SequencingInstrumentIllumina extends AggregateRoot<SequencingInstrumentIllumina, String> {
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
@@ -17,20 +16,24 @@ public class SequencingInstrumentIllumina extends AggregateRoot<SequencingInstru
     @Column(name="instrument_id")
     private String instrumentId;
 
+    @Column(name="status")
     private String status;
 
-    protected SequencingInstrumentIllumina(SequencingInstrumentId entityId) {
-        super(entityId);
+    @Column(name="timestamp_status_updated")
+    private LocalDateTime timestampStatusUpdated;
+
+    protected SequencingInstrumentIllumina(String instrumentId) {
+        super(instrumentId);
     }
 
     @Override
     public boolean sameIdentityAs(SequencingInstrumentIllumina other) {
-        return other != null && entityId.sameValueAs(other.entityId);
+        return other != null && this.id().equals(other.id());
     }
 
     @Override
-    public SequencingInstrumentId id() {
-        return entityId;
+    public String id() {
+        return this.instrumentId;
     }
 
 }

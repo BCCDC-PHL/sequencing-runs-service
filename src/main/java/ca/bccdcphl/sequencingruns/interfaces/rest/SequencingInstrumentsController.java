@@ -13,7 +13,7 @@ import java.util.Arrays;
 import java.util.List;
 
 @RestController()
-@RequestMapping("/v1/instruments")
+@RequestMapping("/instruments")
 public class SequencingInstrumentsController {
 
     private static final Logger log = LoggerFactory.getLogger(SequencingInstrumentsController.class);

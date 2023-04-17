@@ -17,6 +17,7 @@ public class SequencingInstrumentId extends ID implements Value<SequencingInstru
     public String value() {
         return this.value;
     }
+
     @Override
     public boolean sameValueAs(SequencingInstrumentId other) {
         return other != null && this.value().equals(other.value());
