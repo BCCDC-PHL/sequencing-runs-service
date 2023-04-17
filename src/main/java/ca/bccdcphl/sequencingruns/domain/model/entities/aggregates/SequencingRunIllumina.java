@@ -4,13 +4,16 @@ import ca.bccdcphl.sequencingruns.domain.model.AggregateRoot;
 import ca.bccdcphl.sequencingruns.domain.model.values.SequencingRunId;
 import org.springframework.context.ApplicationContext;
 
-import javax.persistence.Column;
+import javax.persistence.*;
 import java.util.Date;
 
+@Entity
 public class SequencingRunIllumina extends AggregateRoot<SequencingRunIllumina, SequencingRunId> {
 
-
-    private SequencingRunId entityId;
+    @Id
+    @GeneratedValue(strategy= GenerationType.AUTO)
+    private Long id;
+    private SequencingRunId sequencingRunId;
     private String instrumentId;
     private String flowcellId;
     private Date runDate;
@@ -23,22 +26,18 @@ public class SequencingRunIllumina extends AggregateRoot<SequencingRunIllumina, 
     private Float errorRate;
     private Float firstCycleIntensity;
 
-    protected SequencingRunIllumina(ApplicationContext applicationContext, SequencingRunId entityId) {
-        super(applicationContext, entityId);
+    protected SequencingRunIllumina(SequencingRunId entityId) {
+        super(entityId);
     }
 
     @Override
     public boolean sameIdentityAs(SequencingRunIllumina other) {
-        return other != null && entityId.sameValueAs(other.entityId);
+        return other != null && this.id().sameValueAs(other.id());
     }
 
     @Override
     public SequencingRunId id() {
-        return entityId;
+        return this.sequencingRunId;
     }
-    @Override
-    protected AggregateRootBehavior initialBehavior() {
-        AggregateRootBehaviorBuilder behaviorBuilder = new AggregateRootBehaviorBuilder();
-        return behaviorBuilder.build();
-    }
+
 }

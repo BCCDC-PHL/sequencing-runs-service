@@ -4,9 +4,23 @@ import ca.bccdcphl.sequencingruns.domain.model.AggregateRoot;
 import ca.bccdcphl.sequencingruns.domain.model.values.SequencingInstrumentId;
 import org.springframework.context.ApplicationContext;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name="sequencing_instrument_illumina")
 public class SequencingInstrumentIllumina extends AggregateRoot<SequencingInstrumentIllumina, SequencingInstrumentId> {
-    protected SequencingInstrumentIllumina(ApplicationContext applicationContext, SequencingInstrumentId entityId) {
-        super(applicationContext, entityId);
+
+    @Id
+    @GeneratedValue(strategy= GenerationType.AUTO)
+    private Long id;
+
+    @Column(name="instrument_id")
+    private String instrumentId;
+
+    private String status;
+
+    protected SequencingInstrumentIllumina(SequencingInstrumentId entityId) {
+        super(entityId);
     }
 
     @Override
@@ -18,9 +32,5 @@ public class SequencingInstrumentIllumina extends AggregateRoot<SequencingInstru
     public SequencingInstrumentId id() {
         return entityId;
     }
-    @Override
-    protected AggregateRootBehavior initialBehavior() {
-        AggregateRootBehaviorBuilder behaviorBuilder = new AggregateRootBehaviorBuilder();
-        return behaviorBuilder.build();
-    }
+
 }

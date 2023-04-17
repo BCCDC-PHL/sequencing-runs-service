@@ -8,7 +8,7 @@ import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication()
 @ComponentScan("ca.bccdcphl.sequencingruns.config")
-@EntityScan(basePackages = {"ca.bccdcphl.sequencingruns.infrastructure.persistence.mapping"})
+@EntityScan(basePackages = {"ca.bccdcphl.sequencingruns.domain.model.entities"})
 public class SequencingrunsSpringBootApplication {
 
 	public static void main(String[] args) {
