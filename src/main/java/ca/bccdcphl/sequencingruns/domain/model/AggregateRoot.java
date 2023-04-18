@@ -7,7 +7,11 @@ public abstract class AggregateRoot<E, ID extends Serializable> implements Entit
 
     public final ID entityId;
 
-    protected AggregateRoot(ID entityId) {
+    public AggregateRoot(){
+        this.entityId = null;
+    }
+
+    public AggregateRoot(ID entityId) {
         this.entityId = entityId;
     }
 

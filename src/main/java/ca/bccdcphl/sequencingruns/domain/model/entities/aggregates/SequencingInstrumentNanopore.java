@@ -17,7 +17,11 @@ public class SequencingInstrumentNanopore extends AggregateRoot<SequencingInstru
     private String status;
     private LocalDateTime timestampStatusUpdated;
 
-    protected SequencingInstrumentNanopore(String instrumentId) {
+    public SequencingInstrumentNanopore() {
+        super();
+    }
+
+    public SequencingInstrumentNanopore(String instrumentId) {
         super(instrumentId);
     }
 

@@ -30,7 +30,11 @@ public class SequencingRunIllumina extends AggregateRoot<SequencingRunIllumina, 
     private Long numReads;
     private Long numReadsPassedFilter;
 
-    protected SequencingRunIllumina(String entityId) {
+    public SequencingRunIllumina() {
+        super();
+    }
+
+    public SequencingRunIllumina(String entityId) {
         super(entityId);
     }
 

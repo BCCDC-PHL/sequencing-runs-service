@@ -29,7 +29,11 @@ public class SequencingRunNanopore extends AggregateRoot<SequencingRunNanopore, 
     private Float yieldGigabases;
 
 
-    protected SequencingRunNanopore(String sequencingRunId) {
+    public SequencingRunNanopore() {
+        super();
+    }
+
+    public SequencingRunNanopore(String sequencingRunId) {
         super(sequencingRunId);
     }
 
