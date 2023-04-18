@@ -1,9 +1,18 @@
 package ca.bccdcphl.sequencingruns.domain.model.entities;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.springframework.data.jpa.domain.AbstractPersistable;
+
 import javax.persistence.*;
 
 @Entity
-public class SequencedLibraryIllumina {
+@Table(name="sequenced_library_illumina")
+@Getter
+@Setter
+@NoArgsConstructor
+public class SequencedLibraryIllumina extends AbstractPersistable<Long> {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;

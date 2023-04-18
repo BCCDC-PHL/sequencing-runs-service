@@ -1,12 +1,19 @@
 package ca.bccdcphl.sequencingruns.domain.model.entities.aggregates;
 
-import ca.bccdcphl.sequencingruns.domain.model.AggregateRoot;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.springframework.data.domain.AbstractAggregateRoot;
 
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-public class SequencingRunIllumina extends AggregateRoot<SequencingRunIllumina, String> {
+@Table(name="sequencing_run_illumina")
+@Getter
+@Setter
+@NoArgsConstructor
+public class SequencingRunIllumina extends AbstractAggregateRoot<SequencingRunIllumina> {
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
@@ -30,22 +37,5 @@ public class SequencingRunIllumina extends AggregateRoot<SequencingRunIllumina, 
     private Long numReads;
     private Long numReadsPassedFilter;
 
-    public SequencingRunIllumina() {
-        super();
-    }
-
-    public SequencingRunIllumina(String entityId) {
-        super(entityId);
-    }
-
-    @Override
-    public boolean sameIdentityAs(SequencingRunIllumina other) {
-        return other != null && this.id().equals(other.id());
-    }
-
-    @Override
-    public String id() {
-        return this.sequencingRunId;
-    }
 
 }

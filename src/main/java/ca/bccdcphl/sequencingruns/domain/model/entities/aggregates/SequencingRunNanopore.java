@@ -1,16 +1,20 @@
 package ca.bccdcphl.sequencingruns.domain.model.entities.aggregates;
 
-import ca.bccdcphl.sequencingruns.domain.model.AggregateRoot;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.springframework.data.domain.AbstractAggregateRoot;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity
-public class SequencingRunNanopore extends AggregateRoot<SequencingRunNanopore, String> {
+@Table(name="sequencing_run_nanopore")
+@Getter
+@Setter
+@NoArgsConstructor
+public class SequencingRunNanopore extends AbstractAggregateRoot<SequencingRunNanopore> {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
@@ -29,21 +33,4 @@ public class SequencingRunNanopore extends AggregateRoot<SequencingRunNanopore, 
     private Float yieldGigabases;
 
 
-    public SequencingRunNanopore() {
-        super();
-    }
-
-    public SequencingRunNanopore(String sequencingRunId) {
-        super(sequencingRunId);
-    }
-
-    @Override
-    public boolean sameIdentityAs(SequencingRunNanopore other) {
-        return other != null && this.id().equals(other.id());
-    }
-
-    @Override
-    public String id() {
-        return this.sequencingRunId;
-    }
 }

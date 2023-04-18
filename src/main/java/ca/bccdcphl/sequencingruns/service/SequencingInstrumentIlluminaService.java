@@ -9,11 +9,16 @@ import org.springframework.stereotype.Service;
 public class SequencingInstrumentIlluminaService {
     @Autowired
     private SequencingInstrumentIlluminaRepository repo;
+
     public SequencingInstrumentIllumina createInstrument(String instrumentId, String type, String model) {
         SequencingInstrumentIllumina instrument = new SequencingInstrumentIllumina();
         instrument.setInstrumentId(instrumentId);
         instrument.setType(type);
         instrument.setModel(model);
         return repo.save(instrument);
+    }
+
+    public Iterable<SequencingInstrumentIllumina> getInstruments() {
+        return repo.findAll();
     }
 }

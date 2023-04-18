@@ -1,0 +1,22 @@
+[
+  {
+    "sequencing_run_id": "220512_M00123_0145_000000000-AG6B2",
+    "instrument_id": "M00123",
+    "flowcell_id": "000000000-AG6B2",
+    "run_date": "2022-05-12",
+    "experiment_name": "Test experiment",
+    "num_cycles_r1": 151,
+    "num_cycles_r2": 151,
+    "cluster_count": 4382863,
+    "cluster_count_passed_filter": 4215341,
+    "percent_clusters_passed_filter": 80.1,
+    "error_rate": 0.393,
+    "first_cycle_intensity": 155.7,
+    "percent_aligned": 0.818,
+    "q30_percent": 92.8,
+    "projected_yield_gigabases": 1.445,
+    "yield_gigabases": 0,
+    "num_reads": 4382863,
+    "num_reads_passed_filter": 4382863
+  }
+]

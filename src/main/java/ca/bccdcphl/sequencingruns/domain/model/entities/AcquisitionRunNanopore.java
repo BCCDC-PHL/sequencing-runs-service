@@ -1,12 +1,18 @@
 package ca.bccdcphl.sequencingruns.domain.model.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.springframework.data.jpa.domain.AbstractPersistable;
+
+import javax.persistence.*;
 
 @Entity
-public class AcquisitionRunNanopore {
+@Table(name="acquisition_run_nanopore")
+@Getter
+@Setter
+@NoArgsConstructor
+public class AcquisitionRunNanopore extends AbstractPersistable<Long> {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;

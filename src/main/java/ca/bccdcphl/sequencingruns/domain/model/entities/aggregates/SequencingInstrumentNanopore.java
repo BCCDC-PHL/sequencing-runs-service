@@ -1,12 +1,19 @@
 package ca.bccdcphl.sequencingruns.domain.model.entities.aggregates;
 
-import ca.bccdcphl.sequencingruns.domain.model.AggregateRoot;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.springframework.data.domain.AbstractAggregateRoot;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-public class SequencingInstrumentNanopore extends AggregateRoot<SequencingInstrumentNanopore, String> {
+@Table(name="sequencing_instrument_nanopore")
+@Getter
+@Setter
+@NoArgsConstructor
+public class SequencingInstrumentNanopore extends AbstractAggregateRoot<SequencingInstrumentNanopore> {
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
@@ -17,19 +24,5 @@ public class SequencingInstrumentNanopore extends AggregateRoot<SequencingInstru
     private String status;
     private LocalDateTime timestampStatusUpdated;
 
-    public SequencingInstrumentNanopore() {
-        super();
-    }
 
-    public SequencingInstrumentNanopore(String instrumentId) {
-        super(instrumentId);
-    }
-
-    @Override
-    public boolean sameIdentityAs(SequencingInstrumentNanopore other) {
-        return other != null && this.id().equals(other.id());
-    }
-    public String id() {
-        return this.instrumentId;
-    }
 }
