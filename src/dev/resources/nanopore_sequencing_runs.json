@@ -1,0 +1,17 @@
+[
+  {
+    "sequencing_run_id": "",
+    "samplesheet_path": "",
+    "instrument_id": "",
+    "flowcell_id": "",
+    "flowcell_product_code": "",
+    "run_date": "2022-05-12",
+    "protocol_id": "",
+    "protocol_run_id": "",
+    "timestamp_protocol_run_started": "",
+    "timestamp_protocol_run_ended": "",
+    "num_reads_total": 0,
+    "num_reads_passed_filter": 0,
+    "yield_gigabases": 0.0
+  }
+]

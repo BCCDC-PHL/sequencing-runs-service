@@ -17,6 +17,15 @@
     "projected_yield_gigabases": 1.445,
     "yield_gigabases": 0,
     "num_reads": 4382863,
-    "num_reads_passed_filter": 4382863
+    "num_reads_passed_filter": 4382863,
+    "demultiplexings": [
+      {
+        "demultiplexing_id": "1",
+        "samplesheet_path": "/path/to/220512_M00123_0145_000000000-AG6B2/SampleSheet.csv",
+        "sequenced_libraries": [
+          {"library_id": "R12345", "samplesheet_project_id": "important_project", "translated_project_id": "notsoimportant_project", "index1": "AGAACATACA","index2": "AGAACAATTA", "num_reads": 28345, "fastq_path_r1": "/path/to/R12345_R1.fastq.gz", "fastq_path_r2": "/path/to/R12345_R2.fastq.gz"}
+        ]
+      }
+    ]
   }
 ]

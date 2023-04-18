@@ -5,6 +5,8 @@ import ca.bccdcphl.sequencingruns.repositories.SequencingInstrumentIlluminaRepos
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class SequencingInstrumentIlluminaService {
     @Autowired
@@ -21,4 +23,10 @@ public class SequencingInstrumentIlluminaService {
     public Iterable<SequencingInstrumentIllumina> getInstruments() {
         return repo.findAll();
     }
+
+    public Optional<SequencingInstrumentIllumina> getInstrumentById(final String instrumentId) {
+        return repo.findByInstrumentId(instrumentId);
+    }
+
+
 }
