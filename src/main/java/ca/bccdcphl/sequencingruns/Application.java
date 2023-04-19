@@ -12,7 +12,7 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 @ComponentScan({"ca.bccdcphl.sequencingruns"})
 @EntityScan(basePackages = {"ca.bccdcphl.sequencingruns.model"})
 @EnableJpaRepositories("ca.bccdcphl.sequencingruns.repositories")
-@EnableGlobalMethodSecurity(securedEnabled = true)
+//@EnableGlobalMethodSecurity(securedEnabled = true)
 public class Application {
 
 	public static void main(String[] args) {

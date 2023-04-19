@@ -43,7 +43,8 @@ public class SequencingInstrumentsController  {
     //@Secured("IS_AUTHENTICATED_FULLY")
     @GetMapping(value="/instruments", consumes = MediaType.ALL_VALUE, produces = {"application/json", "application/vnd.api+json"})
     public CollectionModel<SequencingInstrumentDTO> getInstruments() {
-        List<SequencingInstrumentDTO> instruments = new ArrayList<SequencingInstrumentDTO>();
+        List<SequencingInstrumentDTO> instruments = new ArrayList<>();
+
         Iterable<SequencingInstrumentIllumina> illuminaInstruments = illuminaInstrumentService.getInstruments();
         for (SequencingInstrumentIllumina illuminaInstrument : illuminaInstruments) {
             SequencingInstrumentDTO instrumentModel = assembler.toModel(illuminaInstrument);
@@ -64,6 +65,7 @@ public class SequencingInstrumentsController  {
 
         Optional<SequencingInstrumentIllumina> illuminaInstrument = illuminaInstrumentService.getInstrumentById(instrumentId);
         Optional<SequencingInstrumentNanopore> nanoporeInstrument = nanoporeInstrumentService.getInstrumentById(instrumentId);
+
         if (illuminaInstrument.isPresent()) {
             return EntityModel.of(assembler.toModel(illuminaInstrument.get()));
         } else if (nanoporeInstrument.isPresent()) {

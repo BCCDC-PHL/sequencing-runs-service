@@ -12,12 +12,9 @@ COPY pom.xml .
 # Set permission to execute file
 RUN chmod +x mvnw
 
-# Prepare and install dos2unix to make gradlew file accessible
-RUN yum update -y && yum install -y dos2unix
+# Prepare and install dos2unix to make mvnw file accessible
+RUN yum update -y && yum install -y dos2unix curl
 RUN dos2unix mvnw
-
-RUN yum update -y
-RUN yum install -y curl
 
 # Copy the project source
 COPY src src
@@ -29,6 +26,7 @@ COPY scripts/start.sh start.sh
 RUN chmod +x start.sh && dos2unix start.sh
 
 # Package the application
+# TODO: use prod profile? Depends on use-case for container.
 RUN ./mvnw package -Pdev -DskipTests
 
 #### Stage 2: A minimal docker image with command to run the app

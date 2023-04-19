@@ -1,17 +1,38 @@
 [
   {
-    "sequencing_run_id": "",
+    "sequencing_run_id": "20220922_1429_X1_FAR40213_9d90419f",
     "samplesheet_path": "",
-    "instrument_id": "",
-    "flowcell_id": "",
-    "flowcell_product_code": "",
-    "run_date": "2022-05-12",
-    "protocol_id": "",
-    "protocol_run_id": "",
-    "timestamp_protocol_run_started": "",
-    "timestamp_protocol_run_ended": "",
-    "num_reads_total": 0,
-    "num_reads_passed_filter": 0,
-    "yield_gigabases": 0.0
+    "instrument_id": "GXB03845",
+    "flowcell_id": "FAR40213",
+    "flowcell_product_code": "FLO-MIN106",
+    "run_date": "2022-09-22",
+    "protocol_id": "sequencing/sequencing_MIN106_DNA:FLO-MIN106:SQK-RBK110-96",
+    "protocol_run_id": "b3876c62-a35d-4160-b331-f891a05012c0",
+    "timestamp_protocol_run_started": "2022-09-22T00:13:10.695769162Z",
+    "timestamp_protocol_run_ended": "2022-09-22T00:17:41.539362977Z",
+    "num_reads_total": 2138224,
+    "num_reads_passed_filter": 1632843,
+    "yield_gigabases": 7.9,
+    "acquisition_runs": [
+
+    ]
+  },
+  {
+    "sequencing_run_id": "20221106_1038_X2_FAR38471_6e60125c",
+    "samplesheet_path": "",
+    "instrument_id": "GXB03845",
+    "flowcell_id": "FAR38471",
+    "flowcell_product_code": "FLO-MIN106",
+    "run_date": "2022-11-06",
+    "protocol_id": "sequencing/sequencing_MIN106_DNA:FLO-MIN106:SQK-RBK110-96",
+    "protocol_run_id": "a5676e41-c11e-2138-a263-e846b91137e1",
+    "timestamp_protocol_run_started": "2022-11-06T09:45:13.892019800Z",
+    "timestamp_protocol_run_ended": "2022-11-07T10:21:22.802743018Z",
+    "num_reads_total": 2238451,
+    "num_reads_passed_filter": 1541331,
+    "yield_gigabases": 8.1,
+    "acquisition_runs": [
+
+    ]
   }
 ]

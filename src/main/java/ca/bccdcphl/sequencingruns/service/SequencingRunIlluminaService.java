@@ -6,10 +6,14 @@ import ca.bccdcphl.sequencingruns.repositories.SequencingRunIlluminaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class SequencingRunIlluminaService {
+
     @Autowired
     private SequencingRunIlluminaRepository repo;
+
     public SequencingRunIllumina createSequencingRun(
             String sequencingRunId,
             String instrumentId,
@@ -20,5 +24,13 @@ public class SequencingRunIlluminaService {
         sequencingRun.setInstrumentId(instrumentId);
         sequencingRun.setFlowcellId(flowcellId);
         return repo.save(sequencingRun);
+    }
+
+    public Iterable<SequencingRunIllumina> getSequencingRuns() {
+        return repo.findAll();
+    }
+
+    public Optional<SequencingRunIllumina> getSequencingRunById(final String sequencingRunId) {
+        return repo.findBySequencingRunId(sequencingRunId);
     }
 }

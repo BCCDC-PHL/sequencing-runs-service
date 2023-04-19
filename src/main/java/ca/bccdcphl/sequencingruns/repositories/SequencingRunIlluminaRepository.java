@@ -5,10 +5,11 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Repository;
 
+import javax.validation.constraints.NotNull;
 import java.util.Optional;
 
 @Repository
-public interface SequencingRunIlluminaRepository extends CrudRepository<SequencingRunIllumina, String> {
+public interface SequencingRunIlluminaRepository extends CrudRepository<SequencingRunIllumina, Long> {
     @Override
     @NonNull
     public <S extends SequencingRunIllumina> S save(@NonNull S sequencingRun);
@@ -19,10 +20,12 @@ public interface SequencingRunIlluminaRepository extends CrudRepository<Sequenci
 
     @Override
     @NonNull
-    public Optional<SequencingRunIllumina> findById(@NonNull String id);
+    public Optional<SequencingRunIllumina> findById(@NonNull Long id);
+
+    public Optional<SequencingRunIllumina> findBySequencingRunId(@NonNull String sequencingRunId);
 
     @Override
-    public boolean existsById(@NonNull String id);
+    public boolean existsById(@NonNull Long id);
 
     @Override
     @NonNull
@@ -30,19 +33,21 @@ public interface SequencingRunIlluminaRepository extends CrudRepository<Sequenci
 
     @Override
     @NonNull
-    public Iterable<SequencingRunIllumina> findAllById(@NonNull Iterable<String> ids);
+    public Iterable<SequencingRunIllumina> findAllById(@NonNull Iterable<Long> ids);
 
     @Override
     public long count();
 
     @Override
-    public void deleteById(@NonNull String s);
+    public void deleteById(@NonNull Long id);
+
+    public void deleteBySequencingRunId(@NonNull String sequencingRunId);
 
     @Override
     public void delete(@NonNull SequencingRunIllumina sequencingRun);
 
     @Override
-    public void deleteAllById(Iterable<? extends String> ids);
+    public void deleteAllById(@NotNull Iterable<? extends Long> ids);
 
     @Override
     public void deleteAll(@NonNull Iterable<? extends SequencingRunIllumina> sequencingRuns);

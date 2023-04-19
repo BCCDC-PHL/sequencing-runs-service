@@ -8,22 +8,58 @@
     "num_cycles_r1": 151,
     "num_cycles_r2": 151,
     "cluster_count": 4382863,
-    "cluster_count_passed_filter": 4215341,
-    "percent_clusters_passed_filter": 80.1,
+    "cluster_count_passed_filter": 4035341,
+    "percent_clusters_passed_filter": 92.1,
     "error_rate": 0.393,
     "first_cycle_intensity": 155.7,
     "percent_aligned": 0.818,
     "q30_percent": 92.8,
     "projected_yield_gigabases": 1.445,
-    "yield_gigabases": 0,
+    "yield_gigabases": 1.440,
     "num_reads": 4382863,
-    "num_reads_passed_filter": 4382863,
+    "num_reads_passed_filter": 4035341,
     "demultiplexings": [
       {
         "demultiplexing_id": "1",
         "samplesheet_path": "/path/to/220512_M00123_0145_000000000-AG6B2/SampleSheet.csv",
         "sequenced_libraries": [
           {"library_id": "R12345", "samplesheet_project_id": "important_project", "translated_project_id": "notsoimportant_project", "index1": "AGAACATACA","index2": "AGAACAATTA", "num_reads": 28345, "fastq_path_r1": "/path/to/R12345_R1.fastq.gz", "fastq_path_r2": "/path/to/R12345_R2.fastq.gz"}
+        ]
+      }
+    ]
+  },
+  {
+    "sequencing_run_id": "220516_M00456_0113_000000000-G6B28",
+    "instrument_id": "M00456",
+    "flowcell_id": "000000000-G6B28",
+    "run_date": "2022-05-16",
+    "experiment_name": "Routine sequencing",
+    "num_cycles_r1": 151,
+    "num_cycles_r2": 151,
+    "cluster_count": 4112571,
+    "cluster_count_passed_filter": 4013756,
+    "percent_clusters_passed_filter": 97.6,
+    "error_rate": 0.321,
+    "first_cycle_intensity": 167.3,
+    "percent_aligned": 2.114,
+    "q30_percent": 90.3,
+    "projected_yield_gigabases": 1.386,
+    "yield_gigabases": 1.374,
+    "num_reads": 4112571,
+    "num_reads_passed_filter": 4013756,
+    "demultiplexings": [
+      {
+        "demultiplexing_id": "1",
+        "samplesheet_path": "/path/to/220516_M00456_0113_000000000-G6B28/Alignment_1/20220517_143503/SampleSheetUsed.csv",
+        "sequenced_libraries": [
+          {"library_id": "R23168", "samplesheet_project_id": "virusx_production", "translated_project_id": null, "index1": "AGAACATACA","index2": "AGAACAATTA", "num_reads": 21, "fastq_path_r1": "/path/to/220516_M00456_0113_000000000-G6B28/Alignment_1/20220517_143503/Fastq/R23168_R1.fastq.gz", "fastq_path_r2": "/path/to/220516_M00456_0113_000000000-G6B28/Alignment_1/20220517_143503/Fastq/R23168_R2.fastq.gz"}
+        ]
+      },
+      {
+        "demultiplexing_id": "2",
+        "samplesheet_path": "/path/to/220516_M00456_0113_000000000-G6B28/Alignment_2/20220518_160122/SampleSheetUsed.csv",
+        "sequenced_libraries": [
+          {"library_id": "R12345", "samplesheet_project_id": "important_project", "translated_project_id": null, "index1": "TAATGATTAC","index2": "CAATAGATTA", "num_reads": 35218, "fastq_path_r1": "/path/to/220516_M00456_0113_000000000-G6B28/Alignment_2/20220518_160122/Fastq/R23168_R1.fastq.gz", "fastq_path_r2": "/path/to/220516_M00456_0113_000000000-G6B28/Alignment_2/20220518_160122/Fastq/R23168_R2.fastq.gz"}
         ]
       }
     ]

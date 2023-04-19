@@ -36,7 +36,7 @@ public class JsonNanoporeSequencingRunLoader {
         log.info("STARTING DEV JSON NANOPORE SEQUENCING RUN LOADER");
         List<SequencingRunNanopore> savedSequencingRuns = new ArrayList<>();
         try {
-            File resource = resourceLoader.getResource("classpath:illumina_sequencing_runs.json").getFile();
+            File resource = resourceLoader.getResource("classpath:nanopore_sequencing_runs.json").getFile();
             JsonNode tree = objectMapper.readTree(resource);
             for (JsonNode jsonInstrument : tree) {
                 SequencingRunNanopore savedSequencingRun = service.createSequencingRun(
