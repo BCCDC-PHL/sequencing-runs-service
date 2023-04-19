@@ -5,6 +5,7 @@ import ca.bccdcphl.sequencingruns.repositories.SequencingInstrumentNanoporeRepos
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.Optional;
 
 @Service
@@ -25,5 +26,16 @@ public class SequencingInstrumentNanoporeService {
 
     public Optional<SequencingInstrumentNanopore> getInstrumentById(final String instrumentId) {
         return repo.findByInstrumentId(instrumentId);
+    }
+
+    public SequencingInstrumentNanopore updateStatus(final String instrumentId, final String status) {
+        Optional<SequencingInstrumentNanopore> maybeInstrument = this.getInstrumentById(instrumentId);
+        if (maybeInstrument.isPresent()) {
+            SequencingInstrumentNanopore instrument = maybeInstrument.get();
+            instrument.setStatus(status);
+            return repo.save(instrument);
+        } else {
+            throw new EntityNotFoundException("Instrument not found for id: " + instrumentId);
+        }
     }
 }

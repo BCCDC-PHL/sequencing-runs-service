@@ -20,24 +20,25 @@ public class AuthFilter extends OncePerRequestFilter {
     // TODO: Load this from the environment or config file.
     // TODO: Replace this simple token-based auth with real Oauth2/OIDC authentication
     private static final String READ_TOKEN = "secret";
-    private static final String WRITE_TOKEN = "supersecret";
+    private static final String READ_WRITE_TOKEN = "supersecret";
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, @NonNull HttpServletResponse response, @NonNull FilterChain filterChain) throws ServletException, IOException {
         String providedToken = request.getHeader("Authorization");
-        String requiredToken = null;
+        boolean tokenMatches = false;
         if (request.getMethod().equals("GET")) {
-            requiredToken = READ_TOKEN;
+            tokenMatches = providedToken.equals("Bearer " + READ_TOKEN) || providedToken.equals("Bearer " + READ_WRITE_TOKEN);
         } else if (request.getMethod().equals("POST")) {
-            requiredToken = WRITE_TOKEN;
+            tokenMatches = providedToken.equals("Bearer " + READ_WRITE_TOKEN);
         } else if (request.getMethod().equals("PATCH")) {
-            requiredToken = WRITE_TOKEN;
+            tokenMatches = providedToken.equals("Bearer " + READ_WRITE_TOKEN);
         } else if (request.getMethod().equals("PUT")) {
-            requiredToken = WRITE_TOKEN;
+            tokenMatches = providedToken.equals("Bearer " + READ_WRITE_TOKEN);
         } else if (request.getMethod().equals("DELETE")) {
-            requiredToken = WRITE_TOKEN;
+            tokenMatches = providedToken.equals("Bearer " + READ_WRITE_TOKEN);
         }
-        if (providedToken != null && requiredToken != null && providedToken.equals("Bearer " + requiredToken)) {
+
+        if (providedToken != null && tokenMatches) {
                 filterChain.doFilter(request, response);
         } else {
             response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);

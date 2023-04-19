@@ -5,6 +5,7 @@ import ca.bccdcphl.sequencingruns.repositories.SequencingInstrumentIlluminaRepos
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.Optional;
 
 @Service
@@ -28,5 +29,15 @@ public class SequencingInstrumentIlluminaService {
         return repo.findByInstrumentId(instrumentId);
     }
 
+    public SequencingInstrumentIllumina updateStatus(final String instrumentId, final String status) {
+        Optional<SequencingInstrumentIllumina> maybeInstrument = this.getInstrumentById(instrumentId);
+        if (maybeInstrument.isPresent()) {
+            SequencingInstrumentIllumina instrument = maybeInstrument.get();
+            instrument.setStatus(status);
+            return repo.save(instrument);
+        } else {
+            throw new EntityNotFoundException("Instrument not found for id: " + instrumentId);
+        }
+    }
 
 }

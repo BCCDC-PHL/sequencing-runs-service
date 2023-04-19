@@ -13,6 +13,8 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry;
 public class RestApiConfig implements RepositoryRestConfigurer {
     @Override
     public void configureRepositoryRestConfiguration(RepositoryRestConfiguration config, CorsRegistry cors) {
+        // This disables the default Spring Data REST endpoints, allowing
+        // us to control how our endpoints are configured.
         config.disableDefaultExposure();
         config.withEntityLookup()
                 .forRepository(SequencingInstrumentIlluminaRepository.class)
