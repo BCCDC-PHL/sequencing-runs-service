@@ -23,6 +23,8 @@ public class SequencingInstrumentNanoporeAssembler implements RepresentationMode
         );
 
         dto.add(linkTo(methodOn(SequencingInstrumentsController.class).getNanoporeInstrumentById(instrument.getInstrumentId())).withSelfRel());
+        dto.add(linkTo(methodOn(SequencingInstrumentsController.class).getNanoporeInstrumentStatus(instrument.getInstrumentId())).withRel("status"));
+        dto.add(linkTo(methodOn(SequencingInstrumentsController.class).getNanoporeSequencingRunsByInstrumentId(instrument.getInstrumentId())).withRel("sequencing-runs"));
 
         return dto;
     }

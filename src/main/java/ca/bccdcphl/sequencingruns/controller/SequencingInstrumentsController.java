@@ -18,14 +18,18 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
+import org.springframework.hateoas.Link;
+import org.springframework.hateoas.RepresentationModel;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
+
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 @RestController()
 public class SequencingInstrumentsController  {
@@ -59,6 +63,18 @@ public class SequencingInstrumentsController  {
         this.illuminaRunAssembler = illuminaRunAssembler;
         this.nanoporeInstrumentAssembler = nanoporeInstrumentAssembler;
         this.nanoporeRunAssembler = nanoporeRunAssembler;
+    }
+
+    @GetMapping(value="/instruments")
+    public CollectionModel<Object> getInstruments() {
+        Collection<Object> emptyCollection = Collections.emptySet();
+        CollectionModel<Object> model = CollectionModel.of(emptyCollection);
+        Link illuminaLink = Link.of("/instruments/illumina", "illumina_instruments");
+        Link nanoporeLink = Link.of("/instruments/nanopore", "nanopore_instruments");
+        model.add(illuminaLink);
+        model.add(nanoporeLink);
+
+        return model;
     }
 
     @GetMapping(value="/instruments/illumina", consumes = MediaType.ALL_VALUE, produces = {"application/json", "application/vnd.api+json"})

@@ -26,20 +26,35 @@ public class AuthFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, @NonNull HttpServletResponse response, @NonNull FilterChain filterChain) throws ServletException, IOException {
         String providedToken = request.getHeader("Authorization");
         boolean tokenMatches = false;
-        if (request.getMethod().equals("GET")) {
-            tokenMatches = providedToken.equals("Bearer " + READ_TOKEN) || providedToken.equals("Bearer " + READ_WRITE_TOKEN);
-        } else if (request.getMethod().equals("POST")) {
-            tokenMatches = providedToken.equals("Bearer " + READ_WRITE_TOKEN);
-        } else if (request.getMethod().equals("PATCH")) {
-            tokenMatches = providedToken.equals("Bearer " + READ_WRITE_TOKEN);
-        } else if (request.getMethod().equals("PUT")) {
-            tokenMatches = providedToken.equals("Bearer " + READ_WRITE_TOKEN);
-        } else if (request.getMethod().equals("DELETE")) {
-            tokenMatches = providedToken.equals("Bearer " + READ_WRITE_TOKEN);
+        boolean bypassToken = false;
+        log.info(request.toString());
+        if (providedToken == null) {
+            if (request.getRequestURI().contains("/swagger-ui")) {
+                bypassToken = true;
+            }
+            if (request.getRequestURI().contains("/api-docs")) {
+                bypassToken = true;
+            }
+        } else {
+            if (request.getMethod().equals("GET")) {
+                log.info(request.getRequestURI());
+                tokenMatches = providedToken.equals("Bearer " + READ_TOKEN) || providedToken.equals("Bearer " + READ_WRITE_TOKEN);
+
+            } else if (request.getMethod().equals("POST")) {
+                tokenMatches = providedToken.equals("Bearer " + READ_WRITE_TOKEN);
+            } else if (request.getMethod().equals("PATCH")) {
+                tokenMatches = providedToken.equals("Bearer " + READ_WRITE_TOKEN);
+            } else if (request.getMethod().equals("PUT")) {
+                tokenMatches = providedToken.equals("Bearer " + READ_WRITE_TOKEN);
+            } else if (request.getMethod().equals("DELETE")) {
+                tokenMatches = providedToken.equals("Bearer " + READ_WRITE_TOKEN);
+            }
         }
 
-        if (providedToken != null && tokenMatches) {
-                filterChain.doFilter(request, response);
+        log.info("Token matches: " + String.valueOf(tokenMatches));
+        log.info("Token bypassed: " + String.valueOf(bypassToken));
+        if (tokenMatches || bypassToken) {
+            filterChain.doFilter(request, response);
         } else {
             response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
         }

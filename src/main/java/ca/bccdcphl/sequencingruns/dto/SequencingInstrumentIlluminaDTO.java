@@ -4,9 +4,11 @@ package ca.bccdcphl.sequencingruns.dto;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.hateoas.RepresentationModel;
+import org.springframework.hateoas.server.core.Relation;
 
 @Getter
 @Setter
+@Relation(collectionRelation = "instruments", itemRelation = "instrument")
 public class SequencingInstrumentIlluminaDTO extends RepresentationModel<SequencingInstrumentIlluminaDTO> {
     private String id;
     private String instrument_type;

@@ -13,6 +13,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
+import org.springframework.hateoas.Link;
+import org.springframework.hateoas.server.core.Relation;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,9 +22,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @RestController()
 public class SequencingRunsController {
@@ -46,6 +46,18 @@ public class SequencingRunsController {
         this.nanoporeAssembler = nanoporeAssembler;
     }
 
+    @GetMapping(value="/sequencing-runs")
+    public CollectionModel<Object> getInstruments() {
+        Collection<Object> emptyCollection = Collections.emptySet();
+        CollectionModel<Object> model = CollectionModel.of(emptyCollection);
+        Link illuminaLink = Link.of("/sequencing-runs/illumina", "illumina_sequencing_runs");
+        Link nanoporeLink = Link.of("/sequencing-runs/nanopore", "nanopore_sequencing_runs");
+        model.add(illuminaLink);
+        model.add(nanoporeLink);
+
+        return model;
+    }
+
     @GetMapping(value="/sequencing-runs/illumina", consumes = MediaType.ALL_VALUE, produces = {"application/json", "application/vnd.api+json"})
     public CollectionModel<SequencingRunIlluminaDTO> getIlluminaSequencingRuns() {
         List<SequencingRunIlluminaDTO> runs = new ArrayList<>();
@@ -56,7 +68,9 @@ public class SequencingRunsController {
             runs.add(runModel);
         }
 
-        return CollectionModel.of(runs);
+        CollectionModel<SequencingRunIlluminaDTO> runsCollectionModel = CollectionModel.of(runs);
+
+        return runsCollectionModel;
     }
 
     @GetMapping(value="/sequencing-runs/illumina/{sequencingRunId}", consumes = MediaType.ALL_VALUE, produces = {"application/json", "application/vnd.api+json"})
