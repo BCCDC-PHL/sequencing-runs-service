@@ -27,7 +27,7 @@ public class AuthFilter extends OncePerRequestFilter {
         String providedToken = request.getHeader("Authorization");
         boolean tokenMatches = false;
         boolean bypassToken = false;
-        log.info(request.toString());
+
         if (providedToken == null) {
             if (request.getRequestURI().contains("/swagger-ui")) {
                 bypassToken = true;
@@ -37,7 +37,7 @@ public class AuthFilter extends OncePerRequestFilter {
             }
         } else {
             if (request.getMethod().equals("GET")) {
-                log.info(request.getRequestURI());
+
                 tokenMatches = providedToken.equals("Bearer " + READ_TOKEN) || providedToken.equals("Bearer " + READ_WRITE_TOKEN);
 
             } else if (request.getMethod().equals("POST")) {
@@ -51,8 +51,6 @@ public class AuthFilter extends OncePerRequestFilter {
             }
         }
 
-        log.info("Token matches: " + String.valueOf(tokenMatches));
-        log.info("Token bypassed: " + String.valueOf(bypassToken));
         if (tokenMatches || bypassToken) {
             filterChain.doFilter(request, response);
         } else {
