@@ -9,8 +9,8 @@ import org.springframework.context.annotation.Configuration;
 public class JsonApiConfig {
     @Bean
     JsonApiConfiguration jsonApiConfiguration() {
-        JsonApiConfiguration config = new JsonApiConfiguration();
-        config.withPluralizedTypeRendered(false)
+        JsonApiConfiguration config = new JsonApiConfiguration()
+                .withPluralizedTypeRendered(false)
                 .withLowerCasedTypeRendered(true)
                 .withTypeForClass(SequencingInstrumentDTO.class, "sequencing_instrument");
         return config;

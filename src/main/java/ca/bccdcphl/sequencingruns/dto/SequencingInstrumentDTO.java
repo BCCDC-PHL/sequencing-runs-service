@@ -8,13 +8,13 @@ import org.springframework.hateoas.RepresentationModel;
 @Getter
 @Setter
 public class SequencingInstrumentDTO extends RepresentationModel<SequencingInstrumentDTO> {
-    private String instrumentId;
-    private String type;
-    private String model;
+    private String id;
+    private String instrument_type;
+    private String instrument_model;
 
     public SequencingInstrumentDTO(String instrumentId, String type, String model) {
-        this.instrumentId = instrumentId;
-        this.type = type;
-        this.model = model;
+        this.id = instrumentId;
+        this.instrument_type = type;
+        this.instrument_model = model;
     }
 }
