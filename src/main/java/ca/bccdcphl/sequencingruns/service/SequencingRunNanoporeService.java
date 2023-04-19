@@ -1,6 +1,6 @@
 package ca.bccdcphl.sequencingruns.service;
 
-import ca.bccdcphl.sequencingruns.domain.model.entities.aggregates.SequencingRunNanopore;
+import ca.bccdcphl.sequencingruns.model.aggregates.SequencingRunNanopore;
 import ca.bccdcphl.sequencingruns.repositories.SequencingRunNanoporeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

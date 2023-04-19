@@ -1,6 +1,6 @@
 package ca.bccdcphl.sequencingruns.repositories;
 
-import ca.bccdcphl.sequencingruns.domain.model.entities.aggregates.SequencingRunNanopore;
+import ca.bccdcphl.sequencingruns.model.aggregates.SequencingRunNanopore;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Repository;

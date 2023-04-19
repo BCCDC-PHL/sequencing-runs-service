@@ -1,4 +1,4 @@
-package ca.bccdcphl.sequencingruns.domain.model.entities.aggregates;
+package ca.bccdcphl.sequencingruns.model.aggregates;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

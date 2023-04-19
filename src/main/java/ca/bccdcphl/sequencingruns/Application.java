@@ -1,4 +1,4 @@
-package ca.bccdcphl.sequencingruns.entrypoints;
+package ca.bccdcphl.sequencingruns;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -9,12 +9,12 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication()
 @ComponentScan({"ca.bccdcphl.sequencingruns"})
-@EntityScan(basePackages = {"ca.bccdcphl.sequencingruns.domain.model.entities"})
+@EntityScan(basePackages = {"ca.bccdcphl.sequencingruns.model"})
 @EnableJpaRepositories("ca.bccdcphl.sequencingruns.repositories")
-public class SequencingrunsSpringBootApplication {
+public class Application {
 
 	public static void main(String[] args) {
-		SpringApplication.run(SequencingrunsSpringBootApplication.class, args);
+		SpringApplication.run(Application.class, args);
 	}
 
 }

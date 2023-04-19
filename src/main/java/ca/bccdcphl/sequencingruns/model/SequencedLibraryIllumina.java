@@ -1,4 +1,4 @@
-package ca.bccdcphl.sequencingruns.domain.model.entities;
+package ca.bccdcphl.sequencingruns.model;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

@@ -1,6 +1,6 @@
 package ca.bccdcphl.sequencingruns.dev;
 
-import ca.bccdcphl.sequencingruns.domain.model.entities.aggregates.SequencingInstrumentIllumina;
+import ca.bccdcphl.sequencingruns.model.aggregates.SequencingInstrumentIllumina;
 import ca.bccdcphl.sequencingruns.service.SequencingInstrumentIlluminaService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

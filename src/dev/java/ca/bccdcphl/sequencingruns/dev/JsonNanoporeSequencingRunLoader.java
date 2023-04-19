@@ -1,6 +1,6 @@
 package ca.bccdcphl.sequencingruns.dev;
 
-import ca.bccdcphl.sequencingruns.domain.model.entities.aggregates.SequencingRunNanopore;
+import ca.bccdcphl.sequencingruns.model.aggregates.SequencingRunNanopore;
 import ca.bccdcphl.sequencingruns.service.SequencingRunNanoporeService;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;

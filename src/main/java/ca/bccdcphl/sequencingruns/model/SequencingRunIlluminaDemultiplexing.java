@@ -1,6 +1,6 @@
-package ca.bccdcphl.sequencingruns.domain.model.entities;
+package ca.bccdcphl.sequencingruns.model;
 
-import ca.bccdcphl.sequencingruns.domain.model.entities.aggregates.SequencingRunIllumina;
+import ca.bccdcphl.sequencingruns.model.aggregates.SequencingRunIllumina;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

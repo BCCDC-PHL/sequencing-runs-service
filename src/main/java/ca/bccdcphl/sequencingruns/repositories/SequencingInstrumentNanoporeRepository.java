@@ -1,6 +1,6 @@
 package ca.bccdcphl.sequencingruns.repositories;
 
-import ca.bccdcphl.sequencingruns.domain.model.entities.aggregates.SequencingInstrumentNanopore;
+import ca.bccdcphl.sequencingruns.model.aggregates.SequencingInstrumentNanopore;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Repository;

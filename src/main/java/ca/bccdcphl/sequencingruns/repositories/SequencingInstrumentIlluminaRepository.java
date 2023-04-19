@@ -1,6 +1,6 @@
 package ca.bccdcphl.sequencingruns.repositories;
 
-import ca.bccdcphl.sequencingruns.domain.model.entities.aggregates.SequencingInstrumentIllumina;
+import ca.bccdcphl.sequencingruns.model.aggregates.SequencingInstrumentIllumina;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.lang.NonNull;

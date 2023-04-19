@@ -208,7 +208,7 @@
 						<configuration>
 							<classifier>spring-boot</classifier>
 							<mainClass>
-								ca.bccdcphl.sequencingruns.entrypoints.SequencingrunsSpringBootApplication
+								ca.bccdcphl.sequencingruns.Application
 							</mainClass>
 						</configuration>
 					</execution>

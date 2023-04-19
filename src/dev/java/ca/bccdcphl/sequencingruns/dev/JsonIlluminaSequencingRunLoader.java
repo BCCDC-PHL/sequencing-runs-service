@@ -1,7 +1,6 @@
 package ca.bccdcphl.sequencingruns.dev;
 
-import ca.bccdcphl.sequencingruns.domain.model.entities.aggregates.SequencingInstrumentIllumina;
-import ca.bccdcphl.sequencingruns.domain.model.entities.aggregates.SequencingRunIllumina;
+import ca.bccdcphl.sequencingruns.model.aggregates.SequencingRunIllumina;
 import ca.bccdcphl.sequencingruns.service.SequencingRunIlluminaService;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;

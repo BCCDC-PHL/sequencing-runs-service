@@ -1,13 +1,12 @@
 package ca.bccdcphl.sequencingruns.dev;
 
-import ca.bccdcphl.sequencingruns.domain.model.entities.aggregates.SequencingRunIllumina;
+import ca.bccdcphl.sequencingruns.model.aggregates.SequencingRunIllumina;
 import ca.bccdcphl.sequencingruns.service.SequencingRunIlluminaService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
-import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 import java.io.*;

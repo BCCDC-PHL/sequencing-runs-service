@@ -1,6 +1,6 @@
 package ca.bccdcphl.sequencingruns.service;
 
-import ca.bccdcphl.sequencingruns.domain.model.entities.aggregates.SequencingInstrumentIllumina;
+import ca.bccdcphl.sequencingruns.model.aggregates.SequencingInstrumentIllumina;
 import ca.bccdcphl.sequencingruns.repositories.SequencingInstrumentIlluminaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
