@@ -35,6 +35,8 @@ public interface SequencingRunIlluminaRepository extends CrudRepository<Sequenci
     @NonNull
     public Iterable<SequencingRunIllumina> findAllById(@NonNull Iterable<Long> ids);
 
+    public Iterable<SequencingRunIllumina> findAllByInstrumentId(@NonNull String instrumentId);
+
     @Override
     public long count();
 

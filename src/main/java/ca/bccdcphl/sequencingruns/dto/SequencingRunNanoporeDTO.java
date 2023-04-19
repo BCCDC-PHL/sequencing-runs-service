@@ -7,11 +7,11 @@ import org.springframework.hateoas.RepresentationModel;
 
 @Getter
 @Setter
-public class SequencingRunDTO extends RepresentationModel<SequencingRunDTO> {
+public class SequencingRunNanoporeDTO extends RepresentationModel<SequencingRunNanoporeDTO> {
     private String id;
     private String instrument_id;
 
-    public SequencingRunDTO(
+    public SequencingRunNanoporeDTO(
             String sequencingRunId,
             String instrumentId
     ) {

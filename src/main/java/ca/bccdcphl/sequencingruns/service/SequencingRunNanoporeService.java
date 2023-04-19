@@ -32,4 +32,8 @@ public class SequencingRunNanoporeService {
     public Optional<SequencingRunNanopore> getSequencingRunById(final String sequencingRunId) {
         return repo.findBySequencingRunId(sequencingRunId);
     }
+
+    public Iterable<SequencingRunNanopore> getSequencingRunsByInstrumentId(final String instrumentId) {
+        return repo.findAllByInstrumentId(instrumentId);
+    }
 }

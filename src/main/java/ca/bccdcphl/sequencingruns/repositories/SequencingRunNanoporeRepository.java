@@ -34,6 +34,8 @@ public interface SequencingRunNanoporeRepository extends CrudRepository<Sequenci
     @NonNull
     public Iterable<SequencingRunNanopore> findAllById(@NonNull Iterable<Long> ids);
 
+    public Iterable<SequencingRunNanopore> findAllByInstrumentId(@NonNull String instrumentId);
+
     @Override
     public long count();
 

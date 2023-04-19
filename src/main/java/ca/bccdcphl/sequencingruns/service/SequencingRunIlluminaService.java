@@ -33,4 +33,9 @@ public class SequencingRunIlluminaService {
     public Optional<SequencingRunIllumina> getSequencingRunById(final String sequencingRunId) {
         return repo.findBySequencingRunId(sequencingRunId);
     }
+
+    public Iterable<SequencingRunIllumina> getSequencingRunsByInstrumentId(final String instrumentId) {
+        return repo.findAllByInstrumentId(instrumentId);
+    }
+
 }

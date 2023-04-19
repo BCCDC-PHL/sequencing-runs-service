@@ -23,6 +23,8 @@ public class SequencingInstrumentNanopore extends AbstractAggregateRoot<Sequenci
     private String model;
     private String status;
     private LocalDateTime timestampStatusUpdated;
+    private String currentSequencingRunId;
+    private String previousSequencingRunId;
 
 
 }
