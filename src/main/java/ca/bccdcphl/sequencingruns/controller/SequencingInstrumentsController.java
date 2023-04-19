@@ -11,7 +11,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -38,6 +40,7 @@ public class SequencingInstrumentsController  {
         this.assembler = assembler;
     }
 
+    //@Secured("IS_AUTHENTICATED_FULLY")
     @GetMapping(value="/instruments", consumes = MediaType.ALL_VALUE, produces = {"application/json", "application/vnd.api+json"})
     public CollectionModel<SequencingInstrumentDTO> getInstruments() {
         List<SequencingInstrumentDTO> instruments = new ArrayList<SequencingInstrumentDTO>();
@@ -57,12 +60,19 @@ public class SequencingInstrumentsController  {
     }
 
     @GetMapping(value="/instruments/{instrumentId}", consumes = MediaType.ALL_VALUE, produces = {"application/json", "application/vnd.api+json"})
-    public EntityModel<SequencingInstrumentIllumina> getInstrumentById(@PathVariable final String instrumentId) {
-        EntityModel<SequencingInstrumentIllumina> response;
-        Optional<SequencingInstrumentIllumina> illuminaInstrument = illuminaInstrumentService.getInstrumentById(instrumentId);
-        response = illuminaInstrument.map(EntityModel::of).orElseGet(() -> EntityModel.of(null));
+    public EntityModel<SequencingInstrumentDTO> getInstrumentById(@PathVariable final String instrumentId) {
 
-        return response;
+        Optional<SequencingInstrumentIllumina> illuminaInstrument = illuminaInstrumentService.getInstrumentById(instrumentId);
+        Optional<SequencingInstrumentNanopore> nanoporeInstrument = nanoporeInstrumentService.getInstrumentById(instrumentId);
+        if (illuminaInstrument.isPresent()) {
+            return EntityModel.of(assembler.toModel(illuminaInstrument.get()));
+        } else if (nanoporeInstrument.isPresent()) {
+            return EntityModel.of(assembler.toModel(nanoporeInstrument.get()));
+        } else {
+            throw new ResponseStatusException(
+                    HttpStatus.NOT_FOUND, "instrument not found"
+            );
+        }
     }
 
 
