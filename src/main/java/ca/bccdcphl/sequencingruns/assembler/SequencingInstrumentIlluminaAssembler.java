@@ -24,7 +24,7 @@ public class SequencingInstrumentIlluminaAssembler implements RepresentationMode
 
         dto.add(linkTo(methodOn(SequencingInstrumentsController.class).getIlluminaInstrumentById(instrument.getInstrumentId())).withSelfRel());
         dto.add(linkTo(methodOn(SequencingInstrumentsController.class).getIlluminaInstrumentStatus(instrument.getInstrumentId())).withRel("status"));
-        dto.add(linkTo(methodOn(SequencingInstrumentsController.class).getIlluminaSequencingRunsByInstrumentId(instrument.getInstrumentId())).withRel("sequencing-runs"));
+        dto.add(linkTo(methodOn(SequencingInstrumentsController.class).getIlluminaSequencingRunsByInstrumentId(instrument.getInstrumentId())).withRel("sequencing_runs"));
         return dto;
 
     }
