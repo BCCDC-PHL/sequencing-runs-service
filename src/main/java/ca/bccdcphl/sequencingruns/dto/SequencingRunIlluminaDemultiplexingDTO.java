@@ -8,6 +8,8 @@ import lombok.Getter;
 import lombok.Setter;
 import org.springframework.hateoas.server.core.Relation;
 
+import java.util.List;
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -17,4 +19,5 @@ import org.springframework.hateoas.server.core.Relation;
 public class SequencingRunIlluminaDemultiplexingDTO {
     private String id;
     private String samplesheetPath;
+    private List<SequencedLibraryIlluminaDTO> sequencedLibraries;
 }

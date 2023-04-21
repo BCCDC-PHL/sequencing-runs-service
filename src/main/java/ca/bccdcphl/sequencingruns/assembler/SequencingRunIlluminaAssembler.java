@@ -1,8 +1,10 @@
 package ca.bccdcphl.sequencingruns.assembler;
 
 import ca.bccdcphl.sequencingruns.controller.SequencingRunsController;
+import ca.bccdcphl.sequencingruns.dto.SequencedLibraryIlluminaDTO;
 import ca.bccdcphl.sequencingruns.dto.SequencingRunIlluminaDTO;
 import ca.bccdcphl.sequencingruns.dto.SequencingRunIlluminaDemultiplexingDTO;
+import ca.bccdcphl.sequencingruns.model.SequencedLibraryIllumina;
 import ca.bccdcphl.sequencingruns.model.SequencingRunIlluminaDemultiplexing;
 import ca.bccdcphl.sequencingruns.model.aggregates.SequencingRunIllumina;
 import org.springframework.hateoas.server.RepresentationModelAssembler;
@@ -20,7 +22,7 @@ public class SequencingRunIlluminaAssembler implements RepresentationModelAssemb
     @Override
     public @NonNull SequencingRunIlluminaDTO toModel(@NonNull SequencingRunIllumina sequencingRun) {
 
-        SequencingRunIlluminaDTO dto =  SequencingRunIlluminaDTO.builder()
+        SequencingRunIlluminaDTO sequencingRunDTO =  SequencingRunIlluminaDTO.builder()
                 .id(sequencingRun.getSequencingRunId())
                 .instrumentId(sequencingRun.getInstrumentId())
                 .flowcellId(sequencingRun.getFlowcellId())
@@ -48,12 +50,27 @@ public class SequencingRunIlluminaAssembler implements RepresentationModelAssemb
                     .samplesheetPath(demultiplexing.getSamplesheetPath())
                     .build();
             demultiplexingDTOList.add(demultiplexingDTO);
+            List<SequencedLibraryIlluminaDTO> sequencedLibraryDTOList = new ArrayList<>();
+            for (SequencedLibraryIllumina sequencedLibrary : demultiplexing.getSequencedLibraries()) {
+                SequencedLibraryIlluminaDTO sequencedLibraryDTO = SequencedLibraryIlluminaDTO.builder()
+                        .id(sequencedLibrary.getLibraryId())
+                        .samplesheetProjectId(sequencedLibrary.getSamplesheetProjectId())
+                        .translatedProjectId(sequencedLibrary.getTranslatedProjectId())
+                        .index1(sequencedLibrary.getIndex1())
+                        .index2(sequencedLibrary.getIndex2())
+                        .numReads(sequencedLibrary.getNumReads())
+                        .fastqPathR1(sequencedLibrary.getFastqPathR1())
+                        .fastqPathR2(sequencedLibrary.getFastqPathR2())
+                        .build();
+                sequencedLibraryDTOList.add(sequencedLibraryDTO);
+            }
+            demultiplexingDTO.setSequencedLibraries(sequencedLibraryDTOList);
         }
-        dto.setDemultiplexings(demultiplexingDTOList);
+        sequencingRunDTO.setDemultiplexings(demultiplexingDTOList);
 
         // This switches the ID in the 'self' link from the DB primary key to the domain-specific ID
-        dto.add(linkTo(methodOn(SequencingRunsController.class).getIlluminaSequencingRunById(sequencingRun.getSequencingRunId())).withSelfRel());
+        sequencingRunDTO.add(linkTo(methodOn(SequencingRunsController.class).getIlluminaSequencingRunById(sequencingRun.getSequencingRunId())).withSelfRel());
 
-        return dto;
+        return sequencingRunDTO;
     }
 }

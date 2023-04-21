@@ -5,6 +5,7 @@ import lombok.*;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name="sequencing_run_illumina_demultiplexing")
@@ -23,4 +24,6 @@ public class SequencingRunIlluminaDemultiplexing extends AbstractPersistable<Lon
     private SequencingRunIllumina sequencingRun;
     private Integer demultiplexingId;
     private String samplesheetPath;
+    @OneToMany(mappedBy="demultiplexing", cascade={CascadeType.PERSIST, CascadeType.REMOVE})
+    private List<SequencedLibraryIllumina> sequencedLibraries;
 }

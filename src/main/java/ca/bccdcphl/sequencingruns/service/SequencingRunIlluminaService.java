@@ -1,7 +1,9 @@
 package ca.bccdcphl.sequencingruns.service;
 
+import ca.bccdcphl.sequencingruns.dto.SequencedLibraryIlluminaDTO;
 import ca.bccdcphl.sequencingruns.dto.SequencingRunIlluminaDTO;
 import ca.bccdcphl.sequencingruns.dto.SequencingRunIlluminaDemultiplexingDTO;
+import ca.bccdcphl.sequencingruns.model.SequencedLibraryIllumina;
 import ca.bccdcphl.sequencingruns.model.SequencingRunIlluminaDemultiplexing;
 import ca.bccdcphl.sequencingruns.model.aggregates.SequencingRunIllumina;
 import ca.bccdcphl.sequencingruns.repositories.SequencingRunIlluminaRepository;
@@ -52,14 +54,32 @@ public class SequencingRunIlluminaService {
                 .build();
         List<SequencingRunIlluminaDemultiplexing> demultiplexingsList = new ArrayList<>();
         for (SequencingRunIlluminaDemultiplexingDTO demultiplexingDTO : dto.getDemultiplexings()) {
+            List<SequencedLibraryIllumina> sequencedLibrariesList = new ArrayList<>();
             SequencingRunIlluminaDemultiplexing demultiplexing = SequencingRunIlluminaDemultiplexing.builder()
                     .demultiplexingId(Integer.parseInt(demultiplexingDTO.getId()))
                     .samplesheetPath(demultiplexingDTO.getSamplesheetPath())
                     .build();
+            for (SequencedLibraryIlluminaDTO sequencedLibraryDTO : demultiplexingDTO.getSequencedLibraries()) {
+                SequencedLibraryIllumina sequencedLibrary = SequencedLibraryIllumina.builder()
+                        .libraryId(sequencedLibraryDTO.getId())
+                        .samplesheetProjectId(sequencedLibraryDTO.getSamplesheetProjectId())
+                        .translatedProjectId(sequencedLibraryDTO.getTranslatedProjectId())
+                        .index1(sequencedLibraryDTO.getIndex1())
+                        .index2(sequencedLibraryDTO.getIndex2())
+                        .numReads(sequencedLibraryDTO.getNumReads())
+                        .fastqPathR1(sequencedLibraryDTO.getFastqPathR1())
+                        .fastqPathR2(sequencedLibraryDTO.getFastqPathR2())
+                        .build();
+                sequencedLibrary.setDemultiplexing(demultiplexing);
+                sequencedLibrariesList.add(sequencedLibrary);
+            }
+            demultiplexing.setSequencedLibraries(sequencedLibrariesList);
             demultiplexing.setSequencingRun(sequencingRun);
             demultiplexingsList.add(demultiplexing);
         }
         sequencingRun.setDemultiplexings(demultiplexingsList);
+
+
         return repo.save(sequencingRun);
     }
 

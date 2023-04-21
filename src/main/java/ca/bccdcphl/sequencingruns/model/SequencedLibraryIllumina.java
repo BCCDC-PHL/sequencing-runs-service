@@ -1,8 +1,6 @@
 package ca.bccdcphl.sequencingruns.model;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
 import javax.persistence.*;
@@ -12,13 +10,15 @@ import javax.persistence.*;
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class SequencedLibraryIllumina extends AbstractPersistable<Long> {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
     private String libraryId;
     @ManyToOne
-    @JoinColumn(name="demultiplexing_id")
+    @JoinColumn(name="demultiplexing_id", referencedColumnName="id")
     private SequencingRunIlluminaDemultiplexing demultiplexing;
     private String samplesheetProjectId;
     private String translatedProjectId;
