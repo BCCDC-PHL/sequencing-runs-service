@@ -16,7 +16,6 @@ import java.util.List;
 @AllArgsConstructor
 @Builder
 public class SequencingRunIllumina extends AbstractAggregateRoot<SequencingRunIllumina> {
-
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
@@ -39,7 +38,7 @@ public class SequencingRunIllumina extends AbstractAggregateRoot<SequencingRunIl
     private Float yieldGigabases;
     private Long numReads;
     private Long numReadsPassedFilter;
-    @OneToMany(mappedBy="sequencingRun")
+    @OneToMany(mappedBy="sequencingRun", cascade={CascadeType.PERSIST, CascadeType.REMOVE})
     private List<SequencingRunIlluminaDemultiplexing> demultiplexings;
 
 }

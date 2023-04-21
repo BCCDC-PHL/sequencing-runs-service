@@ -56,6 +56,7 @@ public class SequencingRunIlluminaService {
                     .demultiplexingId(Integer.parseInt(demultiplexingDTO.getId()))
                     .samplesheetPath(demultiplexingDTO.getSamplesheetPath())
                     .build();
+            demultiplexing.setSequencingRun(sequencingRun);
             demultiplexingsList.add(demultiplexing);
         }
         sequencingRun.setDemultiplexings(demultiplexingsList);

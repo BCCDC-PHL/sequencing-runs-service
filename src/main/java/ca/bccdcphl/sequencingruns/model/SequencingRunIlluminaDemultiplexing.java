@@ -19,7 +19,7 @@ public class SequencingRunIlluminaDemultiplexing extends AbstractPersistable<Lon
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
     @ManyToOne
-    @JoinColumn(name="sequencing_run_id")
+    @JoinColumn(name="sequencing_run_id", referencedColumnName="id")
     private SequencingRunIllumina sequencingRun;
     private Integer demultiplexingId;
     private String samplesheetPath;
