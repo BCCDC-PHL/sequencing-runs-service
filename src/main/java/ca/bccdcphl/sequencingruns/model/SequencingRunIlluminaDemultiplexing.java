@@ -1,9 +1,7 @@
 package ca.bccdcphl.sequencingruns.model;
 
 import ca.bccdcphl.sequencingruns.model.aggregates.SequencingRunIllumina;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
 import javax.persistence.*;
@@ -13,6 +11,8 @@ import javax.persistence.*;
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class SequencingRunIlluminaDemultiplexing extends AbstractPersistable<Long> {
 
     @Id
@@ -22,5 +22,5 @@ public class SequencingRunIlluminaDemultiplexing extends AbstractPersistable<Lon
     @JoinColumn(name="sequencing_run_id")
     private SequencingRunIllumina sequencingRun;
     private Integer demultiplexingId;
-    private String sampleSheetPath;
+    private String samplesheetPath;
 }

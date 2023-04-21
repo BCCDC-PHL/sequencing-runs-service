@@ -17,9 +17,7 @@ import org.springframework.hateoas.Link;
 import org.springframework.hateoas.server.core.Relation;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.*;
@@ -58,7 +56,7 @@ public class SequencingRunsController {
         return model;
     }
 
-    @GetMapping(value="/sequencing-runs/illumina", consumes = MediaType.ALL_VALUE, produces = {"application/json", "application/vnd.api+json"})
+    @GetMapping(value="/sequencing-runs/illumina", consumes=MediaType.ALL_VALUE, produces={"application/json", "application/vnd.api+json"})
     public CollectionModel<SequencingRunIlluminaDTO> getIlluminaSequencingRuns() {
         List<SequencingRunIlluminaDTO> runs = new ArrayList<>();
 
@@ -73,7 +71,19 @@ public class SequencingRunsController {
         return runsCollectionModel;
     }
 
-    @GetMapping(value="/sequencing-runs/illumina/{sequencingRunId}", consumes = MediaType.ALL_VALUE, produces = {"application/json", "application/vnd.api+json"})
+    @PostMapping(value="/sequencing-runs/illumina", consumes={"application/json", "application/vnd.api+json"}, produces={"application/json", "application/vnd.api+json"})
+    public EntityModel<SequencingRunIlluminaDTO> postIlluminaSequencingRun(@RequestBody SequencingRunIlluminaDTO postedSequencingRun) {
+        String sequencingRunId = postedSequencingRun.getId();
+        Optional<SequencingRunIllumina> maybeExistingRun = illuminaRunService.getSequencingRunById(sequencingRunId);
+        if (maybeExistingRun.isPresent()) {
+            // Handle case where run with that ID already exists
+        } else {
+
+        }
+        return EntityModel.of(postedSequencingRun);
+    }
+
+    @GetMapping(value="/sequencing-runs/illumina/{sequencingRunId}", consumes=MediaType.ALL_VALUE, produces={"application/json", "application/vnd.api+json"})
     public EntityModel<SequencingRunIlluminaDTO> getIlluminaSequencingRunById(@PathVariable final String sequencingRunId) {
 
         Optional<SequencingRunIllumina> illuminaRun = illuminaRunService.getSequencingRunById(sequencingRunId);
@@ -87,7 +97,7 @@ public class SequencingRunsController {
         }
     }
 
-    @GetMapping(value="/sequencing-runs/nanopore", consumes = MediaType.ALL_VALUE, produces = {"application/json", "application/vnd.api+json"})
+    @GetMapping(value="/sequencing-runs/nanopore", consumes=MediaType.ALL_VALUE, produces={"application/json", "application/vnd.api+json"})
     public CollectionModel<SequencingRunNanoporeDTO> getNanoporeSequencingRuns() {
         List<SequencingRunNanoporeDTO> runs = new ArrayList<>();
 
@@ -100,7 +110,7 @@ public class SequencingRunsController {
         return CollectionModel.of(runs);
     }
 
-    @GetMapping(value="/sequencing-runs/nanopore/{sequencingRunId}", consumes = MediaType.ALL_VALUE, produces = {"application/json", "application/vnd.api+json"})
+    @GetMapping(value="/sequencing-runs/nanopore/{sequencingRunId}", consumes=MediaType.ALL_VALUE, produces={"application/json", "application/vnd.api+json"})
     public EntityModel<SequencingRunNanoporeDTO> getNanoporeSequencingRunById(@PathVariable final String sequencingRunId) {
 
         Optional<SequencingRunNanopore> nanoporeRun = nanoporeRunService.getSequencingRunById(sequencingRunId);
