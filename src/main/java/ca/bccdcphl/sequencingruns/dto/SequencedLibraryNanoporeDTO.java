@@ -1,7 +1,6 @@
 package ca.bccdcphl.sequencingruns.dto;
 
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import lombok.*;
@@ -9,8 +8,6 @@ import org.springframework.hateoas.RepresentationModel;
 import org.springframework.hateoas.server.core.Relation;
 
 import javax.validation.constraints.Min;
-import java.util.Date;
-import java.util.List;
 
 @Getter
 @Setter
@@ -19,14 +16,13 @@ import java.util.List;
 @Builder
 @Relation(collectionRelation = "sequencing_runs", itemRelation = "sequencing_run")
 @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
-public class SequencedLibraryIlluminaDTO extends RepresentationModel<SequencedLibraryIlluminaDTO> {
+public class SequencedLibraryNanoporeDTO extends RepresentationModel<SequencedLibraryNanoporeDTO> {
     private String id;
     private String samplesheetProjectId;
     private String translatedProjectId;
-    private String index1;
-    private String index2;
-    private String fastqPathR1;
-    private String fastqPathR2;
+    private String barcodeName;
+    private String barcodeAlias;
     @Min(value = 0, message = "Value must be non-negative")
     private Long numReads;
+    private String fastqCombinedPath;
 }

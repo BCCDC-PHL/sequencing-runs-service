@@ -5,7 +5,7 @@ import lombok.*;
 import org.springframework.data.domain.AbstractAggregateRoot;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 @Entity
@@ -23,7 +23,7 @@ public class SequencingRunIllumina extends AbstractAggregateRoot<SequencingRunIl
     private String sequencingRunId;
     private String instrumentId;
     private String flowcellId;
-    private Date runDate;
+    private LocalDate runDate;
     private String experimentName;
     private Integer numCyclesR1;
     private Integer numCyclesR2;

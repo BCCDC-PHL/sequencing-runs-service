@@ -15,6 +15,7 @@ public class JsonApiConfig {
                 .withTypeForClass(SequencingInstrumentIlluminaDTO.class, "illumina_sequencing_instrument")
                 .withTypeForClass(SequencingInstrumentNanoporeDTO.class, "nanopore_sequencing_instrument")
                 .withTypeForClass(SequencingRunIlluminaDTO.class, "illumina_sequencing_run")
+                .withTypeForClass(SequencingRunIlluminaDemultiplexingDTO.class, "illumina_sequencing_run_demultiplexing")
                 .withTypeForClass(SequencingRunNanoporeDTO.class, "nanopore_sequencing_run");
 
         return config;

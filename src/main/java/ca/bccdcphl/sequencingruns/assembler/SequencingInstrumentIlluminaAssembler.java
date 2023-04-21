@@ -15,17 +15,21 @@ public class SequencingInstrumentIlluminaAssembler implements RepresentationMode
     @Override
     public @NonNull SequencingInstrumentIlluminaDTO toModel(@NonNull SequencingInstrumentIllumina instrument) {
 
-        SequencingInstrumentIlluminaDTO dto = new SequencingInstrumentIlluminaDTO(
-                instrument.getInstrumentId(),
-                instrument.getType(),
-                instrument.getModel(),
-                instrument.getStatus()
-        );
+        SequencingInstrumentIlluminaDTO instrumentDTO = SequencingInstrumentIlluminaDTO.builder()
+                .id(instrument.getInstrumentId())
+                .instrumentType(instrument.getType())
+                .instrumentModel(instrument.getModel())
+                .status(instrument.getStatus())
+                .currentSequencingRunId(instrument.getCurrentSequencingRunId())
+                .previousSequencingRunId(instrument.getPreviousSequencingRunId())
+                .build();
 
-        dto.add(linkTo(methodOn(SequencingInstrumentsController.class).getIlluminaInstrumentById(instrument.getInstrumentId())).withSelfRel());
-        dto.add(linkTo(methodOn(SequencingInstrumentsController.class).getIlluminaInstrumentStatus(instrument.getInstrumentId())).withRel("status"));
-        dto.add(linkTo(methodOn(SequencingInstrumentsController.class).getIlluminaSequencingRunsByInstrumentId(instrument.getInstrumentId())).withRel("sequencing_runs"));
-        return dto;
+
+        instrumentDTO.add(linkTo(methodOn(SequencingInstrumentsController.class).getIlluminaInstrumentById(instrument.getInstrumentId())).withSelfRel());
+        instrumentDTO.add(linkTo(methodOn(SequencingInstrumentsController.class).getIlluminaInstrumentStatus(instrument.getInstrumentId())).withRel("status"));
+        instrumentDTO.add(linkTo(methodOn(SequencingInstrumentsController.class).getIlluminaSequencingRunsByInstrumentId(instrument.getInstrumentId())).withRel("sequencing_runs"));
+
+        return instrumentDTO;
 
     }
 }

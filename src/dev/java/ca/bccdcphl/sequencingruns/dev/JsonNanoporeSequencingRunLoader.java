@@ -1,5 +1,6 @@
 package ca.bccdcphl.sequencingruns.dev;
 
+import ca.bccdcphl.sequencingruns.dto.SequencingRunNanoporeDTO;
 import ca.bccdcphl.sequencingruns.model.aggregates.SequencingRunNanopore;
 import ca.bccdcphl.sequencingruns.service.SequencingRunNanoporeService;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -38,12 +39,9 @@ public class JsonNanoporeSequencingRunLoader {
         try {
             File resource = resourceLoader.getResource("classpath:nanopore_sequencing_runs.json").getFile();
             JsonNode tree = objectMapper.readTree(resource);
-            for (JsonNode jsonInstrument : tree) {
-                SequencingRunNanopore savedSequencingRun = service.createSequencingRun(
-                        jsonInstrument.get("sequencing_run_id").textValue(),
-                        jsonInstrument.get("instrument_id").textValue(),
-                        jsonInstrument.get("flowcell_id").textValue()
-                );
+            for (JsonNode jsonSequencingRun : tree) {
+                SequencingRunNanoporeDTO sequencingRunDTO = objectMapper.treeToValue(jsonSequencingRun, SequencingRunNanoporeDTO.class);
+                SequencingRunNanopore savedSequencingRun = service.createSequencingRun(sequencingRunDTO);
                 savedSequencingRuns.add(savedSequencingRun);
             }
         } catch (FileNotFoundException ignored) {

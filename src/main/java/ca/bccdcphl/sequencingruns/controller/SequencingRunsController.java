@@ -8,15 +8,18 @@ import ca.bccdcphl.sequencingruns.model.aggregates.SequencingRunIllumina;
 import ca.bccdcphl.sequencingruns.model.aggregates.SequencingRunNanopore;
 import ca.bccdcphl.sequencingruns.service.SequencingRunIlluminaService;
 import ca.bccdcphl.sequencingruns.service.SequencingRunNanoporeService;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.Link;
 import org.springframework.hateoas.server.core.Relation;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -30,18 +33,23 @@ public class SequencingRunsController {
     private final SequencingRunNanoporeService nanoporeRunService;
     private final SequencingRunIlluminaAssembler illuminaAssembler;
     private final SequencingRunNanoporeAssembler nanoporeAssembler;
+    private final MappingJackson2HttpMessageConverter httpMessageConverter;
 
     @Autowired
+
     public SequencingRunsController(
             SequencingRunIlluminaService illuminaRunService,
             SequencingRunNanoporeService nanoporeRunService,
             SequencingRunIlluminaAssembler illuminaAssembler,
-            SequencingRunNanoporeAssembler nanoporeAssembler
+            SequencingRunNanoporeAssembler nanoporeAssembler,
+            @Qualifier("mappingJackson2HttpMessageConverter")
+            MappingJackson2HttpMessageConverter httpMessageConverter
     ) {
         this.illuminaRunService = illuminaRunService;
         this.nanoporeRunService = nanoporeRunService;
         this.illuminaAssembler = illuminaAssembler;
         this.nanoporeAssembler = nanoporeAssembler;
+        this.httpMessageConverter = httpMessageConverter;
     }
 
     @GetMapping(value="/sequencing-runs")
@@ -99,6 +107,7 @@ public class SequencingRunsController {
 
     @GetMapping(value="/sequencing-runs/nanopore", consumes=MediaType.ALL_VALUE, produces={"application/json", "application/vnd.api+json"})
     public CollectionModel<SequencingRunNanoporeDTO> getNanoporeSequencingRuns() {
+        ObjectMapper objectMapper = this.httpMessageConverter.getObjectMapper();
         List<SequencingRunNanoporeDTO> runs = new ArrayList<>();
 
         Iterable<SequencingRunNanopore> nanoporeRuns = nanoporeRunService.getSequencingRuns();

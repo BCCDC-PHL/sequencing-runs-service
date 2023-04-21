@@ -24,8 +24,7 @@ public class SequencingRunIlluminaService {
     private SequencingRunIlluminaRepository repo;
 
     public SequencingRunIllumina createNullSequencingRun(String sequencingRunId) {
-        SequencingRunIllumina sequencingRun = SequencingRunIllumina
-                .builder()
+        SequencingRunIllumina sequencingRun = SequencingRunIllumina.builder()
                 .sequencingRunId(sequencingRunId)
                 .build();
         return repo.save(sequencingRun);
