@@ -13,7 +13,7 @@ import java.util.Collections;
 
 @RestController()
 public class RootController {
-    private static final Logger log = LoggerFactory.getLogger(SequencingInstrumentsController.class);
+    private static final Logger log = LoggerFactory.getLogger(RootController.class);
 
     @Autowired
     public RootController(){
