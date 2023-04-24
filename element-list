@@ -1,0 +1,12 @@
+ca.bccdcphl.sequencingruns
+ca.bccdcphl.sequencingruns.assembler
+ca.bccdcphl.sequencingruns.config.api
+ca.bccdcphl.sequencingruns.config.application
+ca.bccdcphl.sequencingruns.config.datasource
+ca.bccdcphl.sequencingruns.controller
+ca.bccdcphl.sequencingruns.dto
+ca.bccdcphl.sequencingruns.model
+ca.bccdcphl.sequencingruns.model.aggregates
+ca.bccdcphl.sequencingruns.repositories
+ca.bccdcphl.sequencingruns.security
+ca.bccdcphl.sequencingruns.service
