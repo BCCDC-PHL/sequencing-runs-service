@@ -21,7 +21,7 @@ jobs:
           java-version: '11'
           distribution: 'temurin'
       - name: Run tests
-        run: mvn -P test test > artifacts/test_logs.txt
+        run: mvn -P test test | tee artifacts/test_logs.txt
       - name: Upload artifacts
         uses: actions/upload-artifact@v1
         if: always()
