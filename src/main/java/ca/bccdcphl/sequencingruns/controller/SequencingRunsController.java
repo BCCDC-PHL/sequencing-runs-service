@@ -25,6 +25,10 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.util.*;
 
+/**
+ * API controller, serves responses for requests to '/sequencing-runs'
+ *
+ */
 @RestController()
 public class SequencingRunsController {
 

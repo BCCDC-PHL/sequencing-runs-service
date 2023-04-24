@@ -31,6 +31,10 @@ import java.util.*;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
+/**
+ * API controller, serves responses for requests to '/instruments'
+ *
+ */
 @RestController()
 public class SequencingInstrumentsController  {
 

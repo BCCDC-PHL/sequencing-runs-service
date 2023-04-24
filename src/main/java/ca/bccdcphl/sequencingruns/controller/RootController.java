@@ -11,6 +11,10 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.Collection;
 import java.util.Collections;
 
+/**
+ * API Root controller, serves responses for requests to '/'
+ *
+ */
 @RestController()
 public class RootController {
     private static final Logger log = LoggerFactory.getLogger(RootController.class);
