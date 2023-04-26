@@ -13,6 +13,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
@@ -56,7 +57,7 @@ public class SequencingRunIlluminaAssembler implements RepresentationModelAssemb
                         .id(sequencedLibrary.getLibraryId())
                         .samplesheetProjectId(sequencedLibrary.getSamplesheetProjectId())
                         .translatedProjectId(sequencedLibrary.getTranslatedProjectId())
-                        .index1(sequencedLibrary.getIndex1())
+                        .index(sequencedLibrary.getIndex())
                         .index2(sequencedLibrary.getIndex2())
                         .numReads(sequencedLibrary.getNumReads())
                         .fastqPathR1(sequencedLibrary.getFastqPathR1())

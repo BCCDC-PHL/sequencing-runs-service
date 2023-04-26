@@ -51,11 +51,13 @@ public class SequencingRunIlluminaService {
                 .numReads(dto.getNumReads())
                 .numReadsPassedFilter(dto.getNumReadsPassedFilter())
                 .build();
+
         List<SequencingRunIlluminaDemultiplexing> demultiplexingsList = new ArrayList<>();
+
         for (SequencingRunIlluminaDemultiplexingDTO demultiplexingDTO : dto.getDemultiplexings()) {
             List<SequencedLibraryIllumina> sequencedLibrariesList = new ArrayList<>();
             SequencingRunIlluminaDemultiplexing demultiplexing = SequencingRunIlluminaDemultiplexing.builder()
-                    .demultiplexingId(Integer.parseInt(demultiplexingDTO.getId()))
+                    .demultiplexingId(demultiplexingDTO.getId())
                     .samplesheetPath(demultiplexingDTO.getSamplesheetPath())
                     .build();
             for (SequencedLibraryIlluminaDTO sequencedLibraryDTO : demultiplexingDTO.getSequencedLibraries()) {
@@ -63,7 +65,7 @@ public class SequencingRunIlluminaService {
                         .libraryId(sequencedLibraryDTO.getId())
                         .samplesheetProjectId(sequencedLibraryDTO.getSamplesheetProjectId())
                         .translatedProjectId(sequencedLibraryDTO.getTranslatedProjectId())
-                        .index1(sequencedLibraryDTO.getIndex1())
+                        .index(sequencedLibraryDTO.getIndex())
                         .index2(sequencedLibraryDTO.getIndex2())
                         .numReads(sequencedLibraryDTO.getNumReads())
                         .fastqPathR1(sequencedLibraryDTO.getFastqPathR1())
@@ -76,8 +78,8 @@ public class SequencingRunIlluminaService {
             demultiplexing.setSequencingRun(sequencingRun);
             demultiplexingsList.add(demultiplexing);
         }
-        sequencingRun.setDemultiplexings(demultiplexingsList);
 
+        sequencingRun.setDemultiplexings(demultiplexingsList);
 
         return repo.save(sequencingRun);
     }
@@ -88,6 +90,14 @@ public class SequencingRunIlluminaService {
 
     public Optional<SequencingRunIllumina> getSequencingRunById(final String sequencingRunId) {
         return repo.findBySequencingRunId(sequencingRunId);
+    }
+
+    public Optional<List<SequencingRunIlluminaDemultiplexing>> getSequencingRunDemultiplexingsBySequencingRunId(final String sequencingRunId) {
+        return repo.findDemultiplexingsBySequencingRunId(sequencingRunId);
+    }
+
+    public Optional<SequencingRunIlluminaDemultiplexing> getSequencingRunDemultiplexingBySequencingRunIdAndDemultiplexingId(final String sequencingRunId, final String demultiplexingId) {
+        return repo.findDemultiplexingBySequencingRunIdAndDemultiplexingId(sequencingRunId, demultiplexingId);
     }
 
     public Iterable<SequencingRunIllumina> getSequencingRunsByInstrumentId(final String instrumentId) {

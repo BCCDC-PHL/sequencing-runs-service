@@ -22,7 +22,7 @@ public class SequencingRunIlluminaDemultiplexing extends AbstractPersistable<Lon
     @ManyToOne
     @JoinColumn(name="sequencing_run_id", referencedColumnName="id")
     private SequencingRunIllumina sequencingRun;
-    private Integer demultiplexingId;
+    private String demultiplexingId;
     private String samplesheetPath;
     @OneToMany(mappedBy="demultiplexing", cascade={CascadeType.PERSIST, CascadeType.REMOVE})
     private List<SequencedLibraryIllumina> sequencedLibraries;

@@ -22,7 +22,7 @@ public class SequencedLibraryIllumina extends AbstractPersistable<Long> {
     private SequencingRunIlluminaDemultiplexing demultiplexing;
     private String samplesheetProjectId;
     private String translatedProjectId;
-    private String index1;
+    private String index;
     private String index2;
     private Long numReads;
     @Column(name="fastq_path_r1")

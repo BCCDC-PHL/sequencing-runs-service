@@ -1,11 +1,13 @@
 package ca.bccdcphl.sequencingruns.repositories;
 
+import ca.bccdcphl.sequencingruns.model.SequencingRunIlluminaDemultiplexing;
 import ca.bccdcphl.sequencingruns.model.aggregates.SequencingRunIllumina;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Repository;
 
 import javax.validation.constraints.NotNull;
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -23,6 +25,10 @@ public interface SequencingRunIlluminaRepository extends CrudRepository<Sequenci
     public Optional<SequencingRunIllumina> findById(@NonNull Long id);
 
     public Optional<SequencingRunIllumina> findBySequencingRunId(@NonNull String sequencingRunId);
+
+    public Optional<List<SequencingRunIlluminaDemultiplexing>> findDemultiplexingsBySequencingRunId(@NonNull String sequencingRunId);
+
+    public Optional<SequencingRunIlluminaDemultiplexing> findDemultiplexingBySequencingRunIdAndDemultiplexingId(@NonNull String sequencingRunId, @NonNull String demultiplexingId);
 
     @Override
     public boolean existsById(@NonNull Long id);

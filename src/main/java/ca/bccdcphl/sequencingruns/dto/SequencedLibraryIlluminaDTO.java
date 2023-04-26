@@ -23,7 +23,7 @@ public class SequencedLibraryIlluminaDTO extends RepresentationModel<SequencedLi
     private String id;
     private String samplesheetProjectId;
     private String translatedProjectId;
-    private String index1;
+    private String index;
     private String index2;
     private String fastqPathR1;
     private String fastqPathR2;

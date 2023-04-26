@@ -3,6 +3,7 @@ package ca.bccdcphl.sequencingruns.dto;
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import lombok.*;
+import org.springframework.hateoas.RepresentationModel;
 import org.springframework.hateoas.server.core.Relation;
 
 import java.util.List;
@@ -14,7 +15,7 @@ import java.util.List;
 @Builder
 @Relation(collectionRelation = "demultiplexings", itemRelation = "demultiplexing")
 @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
-public class SequencingRunIlluminaDemultiplexingDTO {
+public class SequencingRunIlluminaDemultiplexingDTO extends RepresentationModel<SequencingRunIlluminaDemultiplexingDTO> {
     private String id;
     private String samplesheetPath;
     private List<SequencedLibraryIlluminaDTO> sequencedLibraries;

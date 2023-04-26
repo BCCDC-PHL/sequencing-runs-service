@@ -1,9 +1,12 @@
 package ca.bccdcphl.sequencingruns.controller;
 
 import ca.bccdcphl.sequencingruns.assembler.SequencingRunIlluminaAssembler;
+import ca.bccdcphl.sequencingruns.assembler.SequencingRunIlluminaDemultiplexingAssembler;
 import ca.bccdcphl.sequencingruns.assembler.SequencingRunNanoporeAssembler;
 import ca.bccdcphl.sequencingruns.dto.SequencingRunIlluminaDTO;
+import ca.bccdcphl.sequencingruns.dto.SequencingRunIlluminaDemultiplexingDTO;
 import ca.bccdcphl.sequencingruns.dto.SequencingRunNanoporeDTO;
+import ca.bccdcphl.sequencingruns.model.SequencingRunIlluminaDemultiplexing;
 import ca.bccdcphl.sequencingruns.model.aggregates.SequencingRunIllumina;
 import ca.bccdcphl.sequencingruns.model.aggregates.SequencingRunNanopore;
 import ca.bccdcphl.sequencingruns.service.SequencingRunIlluminaService;
@@ -36,6 +39,7 @@ public class SequencingRunsController {
     private final SequencingRunIlluminaService illuminaRunService;
     private final SequencingRunNanoporeService nanoporeRunService;
     private final SequencingRunIlluminaAssembler illuminaAssembler;
+    private final SequencingRunIlluminaDemultiplexingAssembler illuminaDemultiplexingAssembler;
     private final SequencingRunNanoporeAssembler nanoporeAssembler;
     private final MappingJackson2HttpMessageConverter httpMessageConverter;
 
@@ -45,6 +49,7 @@ public class SequencingRunsController {
             SequencingRunIlluminaService illuminaRunService,
             SequencingRunNanoporeService nanoporeRunService,
             SequencingRunIlluminaAssembler illuminaAssembler,
+            SequencingRunIlluminaDemultiplexingAssembler illuminaDemultiplexingAssembler,
             SequencingRunNanoporeAssembler nanoporeAssembler,
             @Qualifier("mappingJackson2HttpMessageConverter")
             MappingJackson2HttpMessageConverter httpMessageConverter
@@ -52,6 +57,7 @@ public class SequencingRunsController {
         this.illuminaRunService = illuminaRunService;
         this.nanoporeRunService = nanoporeRunService;
         this.illuminaAssembler = illuminaAssembler;
+        this.illuminaDemultiplexingAssembler = illuminaDemultiplexingAssembler;
         this.nanoporeAssembler = nanoporeAssembler;
         this.httpMessageConverter = httpMessageConverter;
     }
@@ -89,10 +95,15 @@ public class SequencingRunsController {
         Optional<SequencingRunIllumina> maybeExistingRun = illuminaRunService.getSequencingRunById(sequencingRunId);
         if (maybeExistingRun.isPresent()) {
             // Handle case where run with that ID already exists
+            throw new ResponseStatusException(
+                    HttpStatus.CONFLICT, "sequencing run exists"
+            );
         } else {
-
+            SequencingRunIllumina createdSequencingRun = illuminaRunService.createSequencingRun(postedSequencingRun);
+            SequencingRunIlluminaDTO createdSequencingRunModel = illuminaAssembler.toModel(createdSequencingRun);
+            return EntityModel.of(createdSequencingRunModel);
         }
-        return EntityModel.of(postedSequencingRun);
+
     }
 
     @GetMapping(value="/sequencing-runs/illumina/{sequencingRunId}", consumes=MediaType.ALL_VALUE, produces={"application/json", "application/vnd.api+json"})
@@ -108,6 +119,43 @@ public class SequencingRunsController {
             );
         }
     }
+
+    @GetMapping(value="/sequencing-runs/illumina/{sequencingRunId}/demultiplexings", consumes=MediaType.ALL_VALUE, produces={"application/json", "application/vnd.api+json"})
+    public CollectionModel<SequencingRunIlluminaDemultiplexingDTO> getIlluminaSequencingRunDemultiplexingsBySequencingRunId(@PathVariable final String sequencingRunId) {
+
+        Optional<List<SequencingRunIlluminaDemultiplexing>> maybeDemultiplexings = illuminaRunService.getSequencingRunDemultiplexingsBySequencingRunId(sequencingRunId);
+
+        if (maybeDemultiplexings.isPresent()) {
+            List<SequencingRunIlluminaDemultiplexing> demultiplexings = maybeDemultiplexings.get();
+            List<SequencingRunIlluminaDemultiplexingDTO> demultiplexingDTOList = new ArrayList<>();
+            for(SequencingRunIlluminaDemultiplexing demultiplexing : demultiplexings) {
+                SequencingRunIlluminaDemultiplexingDTO demultiplexingModel = illuminaDemultiplexingAssembler.toModel(demultiplexing);
+                demultiplexingDTOList.add(demultiplexingModel);
+            }
+            return CollectionModel.of(demultiplexingDTOList);
+        } else {
+            throw new ResponseStatusException(
+                    HttpStatus.NOT_FOUND, "sequencing run not found"
+            );
+        }
+    }
+
+    @GetMapping(value="/sequencing-runs/illumina/{sequencingRunId}/demultiplexings/{demultiplexingId}", consumes=MediaType.ALL_VALUE, produces={"application/json", "application/vnd.api+json"})
+    public EntityModel<SequencingRunIlluminaDemultiplexingDTO> getIlluminaSequencingRunDemultiplexingBySequencingRunIdAndDemultiplexingId(@PathVariable final String sequencingRunId, @PathVariable final String demultiplexingId) {
+
+        Optional<SequencingRunIlluminaDemultiplexing> maybeDemultiplexing = illuminaRunService.getSequencingRunDemultiplexingBySequencingRunIdAndDemultiplexingId(sequencingRunId, demultiplexingId);
+
+        if (maybeDemultiplexing.isPresent()) {
+            SequencingRunIlluminaDemultiplexingDTO demultiplexingModel = illuminaDemultiplexingAssembler.toModel(maybeDemultiplexing.get());
+            return EntityModel.of(demultiplexingModel);
+        } else {
+            throw new ResponseStatusException(
+                    HttpStatus.NOT_FOUND, "sequencing run not found"
+            );
+        }
+    }
+
+
 
     @GetMapping(value="/sequencing-runs/nanopore", consumes=MediaType.ALL_VALUE, produces={"application/json", "application/vnd.api+json"})
     public CollectionModel<SequencingRunNanoporeDTO> getNanoporeSequencingRuns() {
