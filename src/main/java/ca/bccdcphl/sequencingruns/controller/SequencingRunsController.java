@@ -12,6 +12,7 @@ import ca.bccdcphl.sequencingruns.model.aggregates.SequencingRunNanopore;
 import ca.bccdcphl.sequencingruns.service.SequencingRunIlluminaService;
 import ca.bccdcphl.sequencingruns.service.SequencingRunNanoporeService;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.NonNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -90,7 +91,7 @@ public class SequencingRunsController {
     }
 
     @PostMapping(value="/sequencing-runs/illumina", consumes={"application/json", "application/vnd.api+json"}, produces={"application/json", "application/vnd.api+json"})
-    public EntityModel<SequencingRunIlluminaDTO> postIlluminaSequencingRun(@RequestBody SequencingRunIlluminaDTO postedSequencingRun) {
+    public EntityModel<SequencingRunIlluminaDTO> postIlluminaSequencingRun(@NonNull @RequestBody SequencingRunIlluminaDTO postedSequencingRun) {
         String sequencingRunId = postedSequencingRun.getId();
         Optional<SequencingRunIllumina> maybeExistingRun = illuminaRunService.getSequencingRunById(sequencingRunId);
         if (maybeExistingRun.isPresent()) {

@@ -18,6 +18,7 @@
     "yield_gigabases": 1.440,
     "num_reads": 4382863,
     "num_reads_passed_filter": 4035341,
+    "percent_reads_passed_filter": 92.1,
     "demultiplexings": [
       {
         "id": "220512_M00123_0145_000000000-AG6B2-DMX1",
@@ -47,6 +48,8 @@
     "yield_gigabases": 1.374,
     "num_reads": 4112571,
     "num_reads_passed_filter": 4013756,
+    "percent_reads_passed_filter": 97.6,
+    "percent_occupied": 91.3,
     "demultiplexings": [
       {
         "id": "220516_M00456_0113_000000000-G6B28-DMX1",

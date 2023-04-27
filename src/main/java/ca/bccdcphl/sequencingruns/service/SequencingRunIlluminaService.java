@@ -50,6 +50,8 @@ public class SequencingRunIlluminaService {
                 .yieldGigabases(dto.getYieldGigabases())
                 .numReads(dto.getNumReads())
                 .numReadsPassedFilter(dto.getNumReadsPassedFilter())
+                .percentReadsPassedFilter(dto.getPercentReadsPassedFilter())
+                .percentOccupied(dto.getPercentOccupied())
                 .build();
 
         List<SequencingRunIlluminaDemultiplexing> demultiplexingsList = new ArrayList<>();

@@ -38,6 +38,8 @@ public class SequencingRunIllumina extends AbstractAggregateRoot<SequencingRunIl
     private Float yieldGigabases;
     private Long numReads;
     private Long numReadsPassedFilter;
+    private Float percentReadsPassedFilter;
+    private Float percentOccupied;
     @OneToMany(mappedBy="sequencingRun", cascade={CascadeType.PERSIST, CascadeType.REMOVE})
     private List<SequencingRunIlluminaDemultiplexing> demultiplexings;
 

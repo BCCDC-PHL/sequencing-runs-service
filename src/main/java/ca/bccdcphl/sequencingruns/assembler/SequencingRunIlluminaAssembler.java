@@ -8,12 +8,12 @@ import ca.bccdcphl.sequencingruns.model.SequencedLibraryIllumina;
 import ca.bccdcphl.sequencingruns.model.SequencingRunIlluminaDemultiplexing;
 import ca.bccdcphl.sequencingruns.model.aggregates.SequencingRunIllumina;
 import org.springframework.hateoas.server.RepresentationModelAssembler;
+
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
@@ -42,12 +42,14 @@ public class SequencingRunIlluminaAssembler implements RepresentationModelAssemb
                 .yieldGigabases(sequencingRun.getYieldGigabases())
                 .numReads(sequencingRun.getNumReads())
                 .numReadsPassedFilter(sequencingRun.getNumReadsPassedFilter())
+                .percentReadsPassedFilter(sequencingRun.getPercentReadsPassedFilter())
+                .percentOccupied(sequencingRun.getPercentOccupied())
                 .build();
 
         List<SequencingRunIlluminaDemultiplexingDTO> demultiplexingDTOList = new ArrayList<>();
         for (SequencingRunIlluminaDemultiplexing demultiplexing : sequencingRun.getDemultiplexings()) {
             SequencingRunIlluminaDemultiplexingDTO demultiplexingDTO = SequencingRunIlluminaDemultiplexingDTO.builder()
-                    .id(demultiplexing.getDemultiplexingId().toString())
+                    .id(demultiplexing.getDemultiplexingId())
                     .samplesheetPath(demultiplexing.getSamplesheetPath())
                     .build();
             demultiplexingDTOList.add(demultiplexingDTO);

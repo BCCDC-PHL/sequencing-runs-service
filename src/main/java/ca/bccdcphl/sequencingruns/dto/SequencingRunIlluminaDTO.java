@@ -1,8 +1,7 @@
 package ca.bccdcphl.sequencingruns.dto;
 
-
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonProperty;
+
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
@@ -10,13 +9,13 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 import lombok.*;
-import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.hateoas.Links;
 import org.springframework.hateoas.RepresentationModel;
 import org.springframework.hateoas.server.core.Relation;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Optional;
+
 
 @Getter
 @Setter
@@ -47,6 +46,7 @@ public class SequencingRunIlluminaDTO extends RepresentationModel<SequencingRunI
     private Float yieldGigabases;
     private Long numReads;
     private Long numReadsPassedFilter;
+    private Float percentReadsPassedFilter;
+    private Float percentOccupied;
     private List<SequencingRunIlluminaDemultiplexingDTO> demultiplexings;
-
 }
