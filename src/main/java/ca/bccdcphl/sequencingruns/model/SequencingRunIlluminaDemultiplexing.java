@@ -17,7 +17,7 @@ import java.util.List;
 public class SequencingRunIlluminaDemultiplexing extends AbstractPersistable<Long> {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
     @ManyToOne
     @JoinColumn(name="sequencing_run_id", referencedColumnName="id")

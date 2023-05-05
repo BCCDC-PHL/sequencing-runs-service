@@ -70,6 +70,7 @@ public class SequencingInstrumentsController  {
     }
 
     @GetMapping(value="/instruments")
+    @CrossOrigin(origins="*")
     public CollectionModel<Object> getInstruments() {
         Collection<Object> emptyCollection = Collections.emptySet();
         CollectionModel<Object> model = CollectionModel.of(emptyCollection);
@@ -82,6 +83,7 @@ public class SequencingInstrumentsController  {
     }
 
     @GetMapping(value="/instruments/illumina", consumes = MediaType.ALL_VALUE, produces = {"application/json", "application/vnd.api+json"})
+    @CrossOrigin(origins="*")
     public CollectionModel<SequencingInstrumentIlluminaDTO> getIlluminaInstruments() {
         List<SequencingInstrumentIlluminaDTO> instruments = new ArrayList<>();
 
@@ -95,6 +97,7 @@ public class SequencingInstrumentsController  {
     }
 
     @GetMapping(value="/instruments/illumina/{instrumentId}", consumes = MediaType.ALL_VALUE, produces = {"application/json", "application/vnd.api+json"})
+    @CrossOrigin(origins="*")
     public EntityModel<SequencingInstrumentIlluminaDTO> getIlluminaInstrumentById(@PathVariable final String instrumentId) {
 
         Optional<SequencingInstrumentIllumina> maybeInstrument = illuminaInstrumentService.getInstrumentById(instrumentId);
@@ -137,6 +140,7 @@ public class SequencingInstrumentsController  {
     }
 
     @GetMapping(value="/instruments/illumina/{instrumentId}/sequencing-runs", consumes = MediaType.ALL_VALUE, produces = {"application/json", "application/vnd.api+json"})
+    @CrossOrigin(origins="*")
     public CollectionModel<SequencingRunIlluminaDTO> getIlluminaSequencingRunsByInstrumentId(@PathVariable final String instrumentId) {
 
         Optional<SequencingInstrumentIllumina> maybeInstrument = illuminaInstrumentService.getInstrumentById(instrumentId);
@@ -158,6 +162,7 @@ public class SequencingInstrumentsController  {
     }
 
     @GetMapping(value="/instruments/nanopore", consumes = MediaType.ALL_VALUE, produces = {"application/json", "application/vnd.api+json"})
+    @CrossOrigin(origins="*")
     public CollectionModel<SequencingInstrumentNanoporeDTO> getNanoporeInstruments() {
 
         List<SequencingInstrumentNanoporeDTO> instruments = new ArrayList<>();
@@ -172,6 +177,7 @@ public class SequencingInstrumentsController  {
     }
 
     @GetMapping(value="/instruments/nanopore/{instrumentId}", consumes = MediaType.ALL_VALUE, produces = {"application/json", "application/vnd.api+json"})
+    @CrossOrigin(origins="*")
     public EntityModel<SequencingInstrumentNanoporeDTO> getNanoporeInstrumentById(@PathVariable final String instrumentId) {
 
         Optional<SequencingInstrumentNanopore> maybeInstrument = nanoporeInstrumentService.getInstrumentById(instrumentId);
@@ -201,6 +207,7 @@ public class SequencingInstrumentsController  {
     }
 
     @GetMapping(value="/instruments/nanopore/{instrumentId}/status", consumes = {"application/json", "application/vnd.api+json"})
+    @CrossOrigin(origins="*")
     public EntityModel<SequencingInstrumentNanoporeDTO> getNanoporeInstrumentStatus(@PathVariable final String instrumentId) {
         Optional<SequencingInstrumentNanopore> maybeInstrument = nanoporeInstrumentService.getInstrumentById(instrumentId);
         if (maybeInstrument.isPresent()) {
@@ -214,6 +221,7 @@ public class SequencingInstrumentsController  {
     }
 
     @GetMapping(value="/instruments/nanopore/{instrumentId}/sequencing-runs", consumes = MediaType.ALL_VALUE, produces = {"application/json", "application/vnd.api+json"})
+    @CrossOrigin(origins="*")
     public CollectionModel<SequencingRunNanoporeDTO> getNanoporeSequencingRunsByInstrumentId(@PathVariable final String instrumentId) {
 
         Optional<SequencingInstrumentNanopore> instrument = nanoporeInstrumentService.getInstrumentById(instrumentId);

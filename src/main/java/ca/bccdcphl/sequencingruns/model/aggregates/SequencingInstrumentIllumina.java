@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
 public class SequencingInstrumentIllumina extends AbstractAggregateRoot<SequencingInstrumentIllumina> {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
     private String instrumentId;
     private String type;

@@ -17,7 +17,7 @@ import java.util.List;
 @Builder
 public class SequencingRunIllumina extends AbstractAggregateRoot<SequencingRunIllumina> {
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
     @NonNull
     private String sequencingRunId;

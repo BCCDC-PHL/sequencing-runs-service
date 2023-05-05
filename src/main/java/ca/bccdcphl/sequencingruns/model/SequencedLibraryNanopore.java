@@ -16,7 +16,7 @@ import javax.validation.constraints.Min;
 @Builder
 public class SequencedLibraryNanopore extends AbstractPersistable<Long> {
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
     private String libraryId;
     @ManyToOne
