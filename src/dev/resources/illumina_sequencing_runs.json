@@ -24,7 +24,10 @@
         "id": "220512_M00123_0145_000000000-AG6B2-DMX1",
         "samplesheet_path": "/path/to/220512_M00123_0145_000000000-AG6B2/SampleSheet.csv",
         "sequenced_libraries": [
-          {"id": "R12345", "samplesheet_project_id": "important_project", "translated_project_id": "notsoimportant_project", "index": "AGAACATACA","index2": "AGAACAATTA", "num_reads": 28345, "fastq_path_r1": "/path/to/R12345_R1.fastq.gz", "fastq_path_r2": "/path/to/R12345_R2.fastq.gz"}
+          {"id": "R12345", "samplesheet_project_id": "important_project", "translated_project_id": "notsoimportant_project", "index": "AGAACATACA","index2": "AGAACAATTA", "num_reads": 28345, "fastq_path_r1": "/path/to/R12345_R1.fastq.gz", "fastq_path_r2": "/path/to/R12345_R2.fastq.gz"},
+          {"id": "R12346", "samplesheet_project_id": "important_project", "translated_project_id": "notsoimportant_project", "index": "CGATGCTACA","index2": "CGAGTCATGC", "num_reads": 22151, "fastq_path_r1": "/path/to/R12346_R1.fastq.gz", "fastq_path_r2": "/path/to/R12346_R2.fastq.gz"},
+          {"id": "R12347", "samplesheet_project_id": "important_project", "translated_project_id": "notsoimportant_project", "index": "CATGCTACAG","index2": "GCATGCTGAA", "num_reads": 32167, "fastq_path_r1": "/path/to/R12347_R1.fastq.gz", "fastq_path_r2": "/path/to/R12347_R2.fastq.gz"},
+          {"id": "R12348", "samplesheet_project_id": "important_project", "translated_project_id": "notsoimportant_project", "index": "GGATTGCATA","index2": "AAGATAGTAG", "num_reads": 28345, "fastq_path_r1": "/path/to/R12348_R1.fastq.gz", "fastq_path_r2": "/path/to/R12348_R2.fastq.gz"}
         ]
       }
     ]
@@ -98,7 +101,10 @@
         "id": "220521_M00123_0146_000000000-AGB5E-DMX1",
         "samplesheet_path": "/path/to/220521_M00123_0146_000000000-AGB5E/SampleSheet.csv",
         "sequenced_libraries": [
-          {"id": "R12345", "samplesheet_project_id": "important_project", "translated_project_id": "notsoimportant_project", "index": "AGAACATACA","index2": "AGAACAATTA", "num_reads": 28345, "fastq_path_r1": "/path/to/R12345_R1.fastq.gz", "fastq_path_r2": "/path/to/R12345_R2.fastq.gz"}
+          {"id": "R10001", "samplesheet_project_id": "amr_testing", "translated_project_id": null, "index": "AGAACATACA","index2": "AGAACAATTA", "num_reads": 28345, "fastq_path_r1": "/path/to/R10001_R1.fastq.gz", "fastq_path_r2": "/path/to/R10001_R2.fastq.gz"},
+          {"id": "R10002", "samplesheet_project_id": "amr_testing", "translated_project_id": null, "index": "TGCATGCGAA","index2": "AAAGTCTAAA", "num_reads": 18431, "fastq_path_r1": "/path/to/R10002_R1.fastq.gz", "fastq_path_r2": "/path/to/R10002_R2.fastq.gz"},
+          {"id": "R10003", "samplesheet_project_id": "amr_testing", "translated_project_id": null, "index": "AGAGGATAGA","index2": "TAGCTAGTAT", "num_reads": 22231, "fastq_path_r1": "/path/to/R10003_R1.fastq.gz", "fastq_path_r2": "/path/to/R10003_R2.fastq.gz"},
+          {"id": "R10004", "samplesheet_project_id": "amr_testing", "translated_project_id": null, "index": "CTAGTCATAC","index2": "GAGAGAGAGT", "num_reads": 20045, "fastq_path_r1": "/path/to/R10003_R1.fastq.gz", "fastq_path_r2": "/path/to/R10003_R2.fastq.gz"}
         ]
       }
     ]
